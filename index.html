@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>كبايتي | متجر المنتجات</title>
+  <style>
+    :root{
+      --green:#0f7d5a;
+      --green-dark:#0b5f43;
+      --cream:#f7f2ea;
+      --bg:#f0f0f0;
+      --text:#1d1d1d;
+      --muted:#656565;
+      --line:#e7dfd4;
+      --card:#fff;
+      --gold:#f5ba37;
+      --shadow:0 18px 40px rgba(0,0,0,.10);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior:smooth; }
+    body{
+      margin:0;
+      font-family:Tahoma, Arial, sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.6;
+    }
+    a{text-decoration:none; color:inherit;}
+    img{display:block; max-width:100%;}
+    .container{
+      width:min(1200px, calc(100% - 32px));
+      margin:0 auto;
+    }
+
+    .topbar{
+      background:#1b1b1b;
+      color:#fff;
+      padding:10px 0;
+      font-size:14px;
+    }
+    .topbar .wrap{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+    .header{
+      background:rgba(255,255,255,.96);
+      border-bottom:1px solid var(--line);
+      position:sticky;
+      top:0;
+      z-index:999;
+      backdrop-filter: blur(10px);
+    }
+    .nav{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:20px;
+      padding:18px 0;
+      flex-wrap:wrap;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      font-weight:700;
+      font-size:30px;
+      color:var(--green-dark);
+    }
+    .brand-mark{
+      width:52px;height:52px;
+      border-radius:50%;
+      display:grid;place-items:center;
+      background:linear-gradient(135deg,#fff,#edf7f3);
+      border:2px solid #dfece4;
+      font-size:30px;
+    }
+    .nav-links{
+      display:flex;
+      align-items:center;
+      gap:24px;
+      flex-wrap:wrap;
+      font-weight:600;
+    }
+    .nav-links a{
+      position:relative;
+      padding-bottom:4px;
+    }
+    .nav-links a::after{
+      content:"";
+      position:absolute;
+      right:0; bottom:0;
+      width:0; height:2px;
+      background:var(--green);
+      transition:.25s ease;
+    }
+    .nav-links a:hover::after{width:100%;}
+    .cta{
+      display:flex; align-items:center; gap:12px; flex-wrap:wrap;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:12px 18px;
+      border-radius:999px;
+      font-weight:700;
+      border:1px solid transparent;
+      transition:.25s ease;
+      cursor:pointer;
+    }
+    .btn-primary{
+      background:linear-gradient(135deg,var(--green),var(--green-dark));
+      color:#fff;
+      box-shadow:var(--shadow);
+    }
+    .btn-primary:hover{transform:translateY(-1px);}
+    .btn-light{
+      background:#fff;
+      color:var(--green-dark);
+      border-color:var(--line);
+    }
+
+    .hero{
+      padding:28px 0 12px;
+    }
+    .hero-box{
+      background:linear-gradient(135deg,#f8f3eb 0%,#f5f0e7 100%);
+      border:1px solid var(--line);
+      border-radius:28px;
+      overflow:hidden;
+      box-shadow:var(--shadow);
+      display:grid;
+      grid-template-columns:1.1fr 1fr;
+      align-items:center;
+    }
+    .hero-content{
+      padding:52px 38px;
+    }
+    .badge{
+      display:inline-block;
+      background:rgba(15,125,90,.08);
+      color:var(--green);
+      border-radius:999px;
+      padding:8px 14px;
+      font-weight:700;
+      font-size:14px;
+      margin-bottom:18px;
+    }
+    h1{
+      margin:0 0 14px;
+      font-size:clamp(34px,4vw,62px);
+      line-height:1.1;
+      color:var(--green-dark);
+    }
+    .lead{
+      font-size:clamp(16px,1.5vw,20px);
+      margin:0 0 26px;
+      color:var(--muted);
+      max-width:620px;
+    }
+    .hero-actions{
+      display:flex; gap:14px; flex-wrap:wrap;
+      margin-bottom:22px;
+    }
+    .hero-stats{
+      display:flex; gap:28px; flex-wrap:wrap;
+      border-top:1px solid rgba(0,0,0,.08);
+      padding-top:14px;
+    }
+    .stat strong{font-size:28px; color:var(--green-dark); display:block;}
+    .stat span{font-size:14px; color:var(--muted);}
+
+    .hero-visual{
+      padding:18px 20px 18px 0;
+      display:flex; align-items:center; justify-content:center;
+    }
+    .hero-image{
+      width:min(100%, 620px);
+      border-radius:30px;
+      overflow:hidden;
+      box-shadow:0 25px 50px rgba(0,0,0,.12);
+      background:#ddd;
+    }
+    .hero-image img{
+      width:100%; height:100%; object-fit:cover;
+      display:block;
+    }
+
+    .section{
+      padding:32px 0;
+    }
+    .section-head{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:16px; flex-wrap:wrap;
+      margin-bottom:22px;
+    }
+    .section-head h2{
+      margin:0;
+      font-size:clamp(24px,2vw,38px);
+      color:var(--green-dark);
+    }
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      background:rgba(15,125,90,.08);
+      color:var(--green-dark);
+      border-radius:999px;
+      padding:8px 14px;
+      font-weight:700;
+      font-size:14px;
+    }
+
+    .products{
+      display:grid;
+      grid-template-columns:repeat(4, minmax(220px,1fr));
+      gap:22px;
+    }
+    .card{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:20px;
+      overflow:hidden;
+      box-shadow:0 10px 22px rgba(0,0,0,.04);
+      transition:transform .25s ease, box-shadow .25s ease;
+    }
+    .card:hover{
+      transform:translateY(-4px);
+      box-shadow:0 18px 28px rgba(0,0,0,.08);
+    }
+    .card-image{
+      height:220px; overflow:hidden; background:#eee;
+    }
+    .card-image img{
+      width:100%;height:100%;object-fit:cover;
+    }
+    .card-body{
+      padding:18px 18px 20px;
+    }
+    .card-title{
+      margin:0 0 8px;
+      font-size:22px;
+      color:var(--green-dark);
+    }
+    .card-text{
+      margin:0 0 14px;
+      color:var(--muted);
+      font-size:15px;
+    }
+    .card-row{
+      display:flex; justify-content:space-between; align-items:center; gap:10px;
+      margin-top:14px;
+    }
+    .price{
+      font-weight:800;
+      color:var(--green);
+      font-size:18px;
+    }
+    .mini-btn{
+      border:none;
+      border-radius:999px;
+      background:var(--green);
+      color:#fff;
+      font-weight:700;
+      padding:10px 16px;
+      cursor:pointer;
+    }
+
+    .feature-strip{
+      background:linear-gradient(135deg, var(--green-dark), var(--green));
+      color:#fff;
+      border-radius:24px;
+      padding:22px;
+      display:grid;
+      grid-template-columns:repeat(4, minmax(180px,1fr));
+      gap:18px;
+    }
+    .feature{
+      display:flex; align-items:center; gap:12px;
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:16px;
+      padding:12px;
+    }
+    .icon{
+      width:48px;height:48px;
+      display:grid;place-items:center;
+      border-radius:12px;
+      background:rgba(255,255,255,.10);
+      font-size:24px;
+    }
+    .feature strong{display:block; margin-bottom:2px;}
+    .feature span{opacity:.9; font-size:13px;}
+
+    .gallery{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(220px,1fr));
+      gap:18px;
+    }
+    .gallery-item{
+      overflow:hidden;
+      border-radius:22px;
+      border:1px solid var(--line);
+      background:#fff;
+      box-shadow:0 8px 18px rgba(0,0,0,.05);
+    }
+    .gallery-item img{
+      width:100%; height:260px; object-fit:cover;
+    }
+
+    .box{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:22px;
+      padding:25px 24px;
+      box-shadow:0 8px 18px rgba(0,0,0,.04);
+    }
+    .pending{
+      display:inline-block;
+      padding:8px 14px;
+      background:rgba(245,186,55,.12);
+      color:#9f6400;
+      border-radius:999px;
+      font-weight:700;
+      font-size:14px;
+    }
+
+    .reviews{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(220px,1fr));
+      gap:22px;
+    }
+    .review{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:20px;
+      padding:20px;
+      box-shadow:0 8px 18px rgba(0,0,0,.04);
+    }
+    .stars{color:#f7b500; font-size:18px; letter-spacing:3px; margin-bottom:10px;}
+    .review p{margin:0; color:var(--muted);}
+    .review h4{margin:14px 0 0; color:var(--green-dark);}
+
+    .contact{
+      background:linear-gradient(135deg,var(--green-dark), var(--green));
+      color:#fff;
+      padding:26px 24px;
+      border-radius:24px;
+      display:flex; justify-content:space-between; align-items:center; gap:20px; flex-wrap:wrap;
+    }
+    .contact h3{
+      margin:0 0 8px; font-size:28px;
+    }
+    .contact p{
+      margin:0; opacity:.9;
+    }
+
+    footer{
+      margin-top:30px;
+      background:#171717;
+      color:rgba(255,255,255,.9);
+      padding:22px 0 38px;
+    }
+    .footer-row{
+      display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap;
+    }
+
+    @media (max-width:980px){
+      .hero-box{grid-template-columns:1fr;}
+      .hero-content{padding:28px 24px;}
+      .hero-visual{padding:0 20px 20px;}
+      .products{grid-template-columns:repeat(2,minmax(220px,1fr));}
+      .feature-strip{grid-template-columns:repeat(2,minmax(180px,1fr));}
+      .gallery{grid-template-columns:repeat(2,minmax(220px,1fr));}
+      .reviews{grid-template-columns:repeat(2,minmax(220px,1fr));}
+    }
+    @media (max-width:640px){
+      .products,.gallery,.reviews,.feature-strip{grid-template-columns:1fr;}
+      .nav{align-items:flex-start; flex-direction:column;}
+      .nav-links{width:100%; justify-content:space-between;}
+      .btn{width:100%;}
+      .hero-actions{flex-direction:column;}
+      .contact{align-items:flex-start;}
+    }
+  </style>
+</head>
+<body>
+
+  <div class="topbar">
+    <div class="container topbar wrap">
+      <div>دمشق، سوريا</div>
+      <div>واتساب: +963990424380 | اتصال: +963990424380</div>
+    </div>
+  </div>
+
+  <header class="header">
+    <div class="container nav">
+      <div class="brand">
+        <div class="brand-mark">ك</div>
+        <span>كبايتي</span>
+      </div>
+
+      <nav class="nav-links">
+        <a href="#home">الرئيسية</a>
+        <a href="#products">المنتجات</a>
+        <a href="#gallery">معرض الصور</a>
+        <a href="#offers">العروض</a>
+        <a href="#delivery">التوصيل</a>
+        <a href="#reviews">التقييمات</a>
+      </nav>
+
+      <div class="cta">
+        <a href="https://wa.me/963990424380" class="btn btn-primary" target="_blank">اطلب عبر واتساب</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="home">
+    <section class="hero">
+      <div class="container hero-box">
+        <div class="hero-content">
+          <div class="badge">منتجات مجمدة بجودة عالية</div>
+          <h1>مذاق أصيل من كبايتي</h1>
+          <p class="lead">
+            كبة، برك، وفطائر من أحلى النكهات. نختار لك المذاق التقليدي مع جودة عالية والتغليف المناسب.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#products" class="btn btn-primary">تصفح المنتجات</a>
+            <a href="tel:+963990424380" class="btn btn-light">اتصل بنا</a>
+          </div>
+
+          <div class="hero-stats">
+            <div class="stat">
+              <strong>12+</strong>
+              <span>نوع منتج</span>
+            </div>
+            <div class="stat">
+              <strong>5/5</strong>
+              <span>تقييمات</span>
+            </div>
+            <div class="stat">
+              <strong>24/7</strong>
+              <span>طلب مباشر</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="hero-image">
+            <img src="https://raw.githubusercontent.com/m12h00/capta/main/WhatsApp%20Image%202026-11-07%20at%208.57.31%20PM.jpeg" alt="كبة مقلية كبايتي" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="products">
+      <div class="container">
+        <div class="section-head">
+          <h2>منتجاتنا</h2>
+          <div class="pill">أفضل الأنواع</div>
+        </div>
+
+        <div class="products">
+          <article class="card">
+            <div class="card-image">
+              <img src="https://raw.githubusercontent.com/m12h00/capta/main/WhatsApp%20Image%202026-11-07%20at%208.57.34%20PM.jpeg" alt="كبة مقلية" />
+            </div>
+            <div class="card-body">
+              <h3 class="card-title">كبة مقلية</h3>
+              <p class="card-text">مذاق أصيل ومناسب للعائلة والضيافة.</p>
+              <div class="card-row">
+                <span class="price">سيتم تحديد السعر</span>
+                <button class="mini-btn">اطلب الآن</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-image">
+              <img src="https://raw.githubusercontent.com/m12h00/capta/main/WhatsApp%20Image%202026-11-07%20at%208.57.35%20PM.jpeg" alt="كبة مشوية" />
+            </div>
+            <div class="card-body">
+              <h3 class="card-title">كبة مشوية</h3>
+              <p class="card-text">نكهة مميزة وطعم متوازن.</p>
+              <div class="card-row">
+                <span class="price">سيتم تحديد السعر</span>
+                <button class="mini-btn">اطلب الآن</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-image">
+              <img src="https://raw.githubusercontent.com/m12h00/capta/main/WhatsApp%20Image%202026-11-07%20at%208.57.37%20PM.jpeg" alt="كبة نباتية" />
+            </div>
+            <div class="card-body">
+              <h3 class="card-title">كبة نباتية</h3>
+              <p class="card-text">خيار رائع لمن يفضل النكهات النباتية.</p>
+              <div class="card-row">
+                <span class="price">سيتم تحديد السعر</span>
+                <button class="mini-btn">اطلب الآن</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-image">
+              <img src="https://raw.githubusercontent.com/m12h00/capta/main/WhatsApp%20Image%202026-11-07%20at%208.57.49%20PM.jpeg" alt="كبة بطاطا" />
+            </div>
+            <div class="card-body">
+              <h3 class="card-title">كبة بطاطا</h3>
+              <p class="card-text">نوع مختلف ومناسب لذوق مختلف.</p>
+              <div class="card-row">
+                <span class="price">سيتم تحديد السعر</span>
+                <button class="mini-btn">اطلب الآن</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-image">
+              <img src="https://raw.githubusercontent.com/m12h00/capta/main/WhatsApp%20Image%202026-11-07%20at%208.57.46%20PM.jpeg" alt="برك جبنة" />
+            </div>
+            <div class="card-body">
+              <h3 class="card-title">برك جبنة</h3>
+              <p class="card-text">حشوة كريمية وملموسة جدًا.</p>
+              <div class="card-row">
+                <span class="price">سيتم تحديد السعر</span>
+                <button class="mini-btn">اطلب الآن</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-image">
+              <img src="https://raw.githubusercontent.com/m12h00/capta/main/WhatsApp%20Image%202026-11-07%20at%208.57.46%20PM%20(1).jpeg" alt="برك لحم" />
+            </div>
+            <div class="card-body">
+              <h3 class="card-title">برك لحم</h3>
+              <p class="card-text">مذاق غني ومناسب للضيافة.</p>
+              <div class="card-row">
+                <span class="price">سيتم تحديد السعر</span>
+                <button class="mini-btn">اطلب الآن</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-image">
+              <img src="https://raw.githubusercontent.com/m12h00/capta/main/WhatsApp%20Image%202026-11-07%20at%208.57.47%20PM.jpeg" alt="شيش برك" />
+            </div>
+            <div class="card-body">
+              <h3 class="card-title">شيش برك</h3>
+              <p class="card-text">نغمة خاصة ونكهة مميزة.</p>
+              <div class="card-row">
+                <span class="price">سيتم تحديد السعر</span>
+                <button class="mini-btn">اطلب الآن</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-image">
+              <img src="https://raw.githubusercontent.com/m12h00/capta/main/WhatsApp%20Image%202026-11-07%20at%208.57.48%20PM.jpeg" alt="فطيرة التفاح" />
+            </div>
+            <div class="card-body">
+              <h3 class="card-title">فطيرة التفاح</h3>
+              <p class="card-text">حلويات خفيفة ومناسبة أثناء الاستقبال.</p>
+              <div class="card-row">
+                <span class="price">سيتم تحديد السعر</span>
+                <button class="mini-btn">اطلب الآن</button>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="feature-strip">
+          <div class="feature">
+            <div class="icon">✅</div>
+            <div>
+              <strong>جودة عالية</strong>
+              <span>منتجات مختارة بعناية</span>
+            </div>
+          </div>
+
+          <div class="feature">
+            <div class="icon">📦</div>
+            <div>
+              <strong>توصيل سريع</strong>
+              <span>في دمشق ومنطقة دمشق</span>
+            </div>
+          </div>
+
+          <div class="feature">
+            <div class="icon">💬</div>
+            <div>
+              <strong>طلب مباشر</strong>
+              <span>من خلال واتساب</span>
+            </div>
+          </div>
+
+          <div class="feature">
+            <div class="icon">🥘</div>
+            <div>
+              <strong>مذاق أصيل</strong>
+              <span>من أطباقنا التقليدية</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="gallery">
+      <div class="container">
+        <div class="section-head">
+          <h2>معرض الصور</h2>
+          <div class="pill">منتجاتنا</div>
+        </div>
+
+        <div class="gallery">
+          <div class="gallery-item">
+            <img src="https://raw.githubusercontent.com/m12h00/capta/main/WhatsApp%20Image%202026-11-07%20at%208.57.31%20PM.jpeg" alt="معرض صورة 1" />
+          </div>
+          <div class="gallery-item">
+            <img src="https://raw.githubusercontent.com/m12h00/capta/main/WhatsApp%20Image%202026-11-07%20at%208.57.34%20PM.jpeg" alt="معرض صورة 2" />
+          </div>
+          <div class="gallery-item">
+            <img src="https://raw.githubusercontent.com/m12h00/capta/main/WhatsApp%20Image%202026-11-07%20at%208.57.36%20PM.jpeg" alt="معرض صورة 3" />
+          </div>
+          <div class="gallery-item">
+            <img src="https://raw.githubusercontent.com/m12h00/capta/main/WhatsApp%20Image%202026-11-07%20at%208.57.46%20PM%20(1).jpeg" alt="معرض صورة 4" />
+          </div>
+          <div class="gallery-item">
+            <img src="https://raw.githubusercontent.com/m12h00/capta/main/WhatsApp%20Image%202026-11-07%20at%208.57.47%20PM%20(1).jpeg" alt="معرض صورة 5" />
+          </div>
+          <div class="gallery-item">
+            <img src="https://raw.githubusercontent.com/m12h00/capta/main/WhatsApp%20Image%202026-11-07%20at%208.57.48%20PM.jpeg" alt="معرض صورة 6" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="offers">
+      <div class="container">
+        <div class="section-head">
+          <h2>العروض</h2>
+          <div class="pill">قريبًا</div>
+        </div>
+
+        <div class="box">
+          <span class="pending">جاري التطوير</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="delivery">
+      <div class="container">
+        <div class="section-head">
+          <h2>التوصيل</h2>
+          <div class="pill">خدمة متاحة</div>
+        </div>
+
+        <div class="box">
+          <span class="pending">جاري التطوير</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="reviews">
+      <div class="container">
+        <div class="section-head">
+          <h2>تقييمات العملاء</h2>
+          <div class="pill">نجوم 5</div>
+        </div>
+
+        <div class="reviews">
+          <div class="review">
+            <div class="stars">★★★★★</div>
+            <p>“مذاق رائع جدًا، واحتفظت بالطعم التقليدي.”</p>
+            <h4>سارة</h4>
+          </div>
+
+          <div class="review">
+            <div class="stars">★★★★★</div>
+            <p>“جودة ممتازة والتغليف جيد جدًا.”</p>
+            <h4>حسن</h4>
+          </div>
+
+          <div class="review">
+            <div class="stars">★★★★★</div>
+            <p>“خدمة ممتازة والمذاق أصيل ومميز.”</p>
+            <h4>رنا</h4>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="contact">
+          <div>
+            <h3>اطلب منتجك الآن</h3>
+            <p>مراسلة مباشرة عبر واتساب أو اتصال مباشر</p>
+          </div>
+
+          <div class="cta">
+            <a href="https://wa.me/963990424380" target="_blank" class="btn btn-light">واتساب</a>
+            <a href="tel:+963990424380" class="btn btn-light">اتصال</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-row">
+      <div>© 2025 كبايتي</div>
+      <div>دمشق، سوريا</div>
+    </div>
+  </footer>
+
+</body>
+</html>
