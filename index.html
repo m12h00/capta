@@ -4,447 +4,153 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#0d6d4b">
-  <meta name="description" content="كبايتي — كبة وبتزاويح مميزة في دمشق.">
-  <title>كبايتي | متجر المنتجات</title>
+  <meta name="description" content="كبايتي — كبة وبرك وشيش برك وفطيرة التفاح في دمشق.">
+  <title>كبايتي | مذاق أصيل</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    :root{
-      --ink:#1d201d;
-      --green:#0d6d4b;
-      --green-deep:#0a563d;
-      --gold:#d39a4f;
-      --cream:#f5f1e8;
-      --paper:#fffaf6;
-      --sage:#e9f0e8;
-      --muted:#5f665d;
-      --line:#dde3d9;
-      --shadow:0 16px 30px rgba(14,63,49,.12);
-    }
-    *{box-sizing:border-box} html{scroll-behavior:smooth;scroll-padding-top:82px} body{margin:0;background:var(--paper);color:var(--ink);font:1.12rem/1.8 'Amiri',serif} a{color:inherit;text-decoration:none} img{display:block;max-width:100%}
-
-    .container{width:min(1180px,calc(100% - 32px));margin:0 auto}
-    .top{position:sticky;top:0;z-index:30;background:rgba(255,250,246,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
-    .nav{min-height:72px;display:flex;align-items:center;justify-content:space-between;gap:22px;flex-wrap:wrap}
-    .logo{display:inline-flex;align-items:center;gap:10px;font-weight:700;font-size:2rem;color:var(--green-deep)}
-    .logo-mark{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#fff,#eef6f0);border:2px solid #dfeae3;color:var(--green-deep);font-size:1.7rem}
-    .links{display:flex;gap:26px;align-items:center;flex-wrap:wrap;font-size:1.05rem}
-    .links a{position:relative;padding-bottom:3px;color:var(--ink)}
-    .links a::after{content:"";position:absolute;right:0;bottom:0;width:0;height:2px;background:var(--green);transition:.25s ease}
-    .links a:hover::after,.links a:focus-visible::after{width:100%}
-    .btn{display:inline-flex;justify-content:center;align-items:center;padding:10px 22px;border:0;border-radius:999px;background:var(--green);color:#fff;font:inherit;font-weight:700;cursor:pointer;transition:.2s ease;box-shadow:var(--shadow)}
-    .btn:hover{transform:translateY(-1px)}
-    .btn-light{background:#fff;border:1px solid var(--line);color:var(--green-deep)}
-
-    .hero{background:radial-gradient(ellipse at 75% 30%,#dfe9dc 0,transparent 38%),var(--cream);padding:58px 0 66px}
-    .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:46px}
-    .tag{display:inline-block;padding:8px 16px;border-radius:999px;background:rgba(13,109,75,.08);color:var(--green);font-size:.9rem;font-weight:700}
-    h1{margin:16px 0 12px;font-size:clamp(2.7rem,4vw,5rem);line-height:1.05;color:var(--green-deep)}
-    .hero-copy p{margin:0 0 22px;color:var(--muted);font-size:1.2rem;max-width:580px}
-    .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:18px}
-    .mini-stats{display:flex;gap:26px;flex-wrap:wrap;padding-top:14px;border-top:1px solid rgba(0,0,0,.08)}
-    .mini-stats strong{display:block;font-size:2rem;color:var(--green-deep)}
-    .mini-stats span{display:block;color:var(--muted);font-size:.9rem}
-    .hero-visual{display:flex;justify-content:center;align-items:center}
-    .hero-photo{max-width:560px;width:100%;border-radius:28px;overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow);background:#f0ede8}
-    .hero-photo img{width:100%;height:100%;object-fit:cover;display:block}
-
-    .section{padding:72px 0}
-    .section-title{text-align:center;margin:0 auto 30px}
-    .section-title h2{font-size:clamp(1.9rem,3vw,3rem);margin:8px 0 4px;color:var(--green)}
-    .section-title p{margin:0;color:var(--muted)}
-
-    .flavors-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
-    .flavor{background:#fff;border:1px solid var(--line);border-radius:22px;overflow:hidden;box-shadow:0 10px 24px rgba(0,0,0,.04)}
-    .flavor img{width:100%;height:230px;object-fit:cover;display:block}
-    .flavor-body{padding:16px 18px 20px}
-    .flavor h3{margin:0 0 8px;font-size:1.6rem;color:var(--green-deep)}
-    .flavor p{margin:0;color:var(--muted)}
-    .flavor-row{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:14px}
-    .flavor-price{font-weight:700;color:var(--green)}
-    .flavor .btn{padding:8px 14px}
-
-    .gallery{background:#f4eee3}
-    .gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-    .gallery-grid img{display:block;width:100%;height:250px;object-fit:cover;border:5px solid #fff;border-radius:16px;box-shadow:0 10px 20px rgba(0,0,0,.05)}
-
-    .product{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:28px;background:var(--cream);border:1px solid var(--line);border-radius:24px}
-    .product h3{margin:0 0 8px;color:var(--green-deep);font-size:2rem}
-    .product p{margin:0;color:var(--muted)}
-    .product-box{min-width:240px;background:#fff;padding:18px 22px;border:1px solid var(--line);border-radius:18px;display:flex;flex-direction:column;gap:10px;box-shadow:0 10px 20px rgba(0,0,0,.04)}
-    .product-box strong{font-size:2rem;color:var(--green)}
-    .product-box span{color:var(--muted)}
-
-    .offers{background:#f8f5ed}
-    .offer-card{max-width:760px;margin:auto;padding:30px;background:var(--cream);border:1px dashed var(--gold);border-radius:24px;text-align:center}
-    .offer-card h3{font-size:2rem;margin:0 0 10px;color:var(--green-deep)}
-    .offer-card p{margin:0;color:var(--muted)}
-    .pending{display:inline-block;margin-top:18px;padding:8px 14px;border-radius:999px;background:rgba(211,154,79,.12);color:#7d5d2e;font-weight:700}
-
-    .quick-order{background:var(--paper)}
-    .order-card{max-width:760px;margin:auto;padding:28px;background:white;border:1px solid var(--line);border-radius:24px;box-shadow:0 12px 30px rgba(13,109,75,.06)}
-    .order-fields{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
-    .field{display:flex;flex-direction:column;gap:6px}
-    .field label{font-weight:700;color:var(--green-deep)}
-    .field select,.field input{width:100%;padding:12px 14px;border-radius:12px;border:1px solid var(--line);font:inherit;background:#fff;color:var(--ink)}
-    .order-total{margin-top:18px;padding:14px 18px;background:var(--sage);border-radius:12px;border:1px solid #dfe9e1;color:var(--green-deep);font-weight:700}
-    .order-actions{margin-top:18px;display:flex;justify-content:flex-start}
-
-    .rating{background:var(--sage)}
-    .rating-box{max-width:680px;margin:auto;padding:28px;background:white;border:1px solid var(--line);border-radius:24px;text-align:center}
-    .stars{display:flex;justify-content:center;gap:10px;font-size:2rem;cursor:pointer;user-select:none}
-    .star{color:#d7d7d7;transition:.2s ease}
-    .star.active{color:#f4b740}
-    .rating-box form{margin-top:14px}
-    .rating-box textarea{width:100%;min-height:120px;border:1px solid var(--line);border-radius:14px;padding:14px 16px;font:inherit;resize:vertical;background:#fff}
-    .rating-box button{margin-top:12px}
-
-    .contact{padding:60px 0;background:var(--green);color:#fff}
-    .contact-row{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
-    .contact h2{font-size:2.2rem;margin:0}
-    .contact p{margin:10px 0 0;opacity:.9}
-    .contact-actions{display:flex;gap:10px;flex-wrap:wrap}
-
-    .whatsapp-float{position:fixed;right:20px;bottom:20px;z-index:20;display:flex;align-items:center;gap:10px;padding:12px 20px;background:#1ea85d;color:white;border:2px solid white;border-radius:999px;box-shadow:0 14px 28px rgba(30,168,93,.28);font-weight:700;animation:pop 2s ease-in-out infinite}
-    @keyframes pop{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-8px) scale(1.04)}}
-    .whatsapp-icon{font-size:1.4rem}
-
-    footer{padding:22px 0 40px;background:#111}
-    .footer-row{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;color:rgba(255,255,255,.8)}
-
-    @media (max-width:760px){
-      .nav{flex-wrap:wrap;justify-content:space-between;gap:8px 12px;padding:10px 0}
-      .links{order:3;flex:0 0 100%;gap:18px;overflow-x:auto;white-space:nowrap;padding-bottom:6px}
-      .hero-grid,.product,.contact-row{grid-template-columns:1fr;display:grid}
-      .hero-grid{display:grid}
-      .flavors-grid,.gallery-grid,.order-fields{grid-template-columns:1fr 1fr}
-      .product-box{min-width:auto}
-    }
-    @media (max-width:520px){
-      .flavors-grid,.gallery-grid,.order-fields{grid-template-columns:1fr}
-      .product{padding:20px}
-      .order-card{padding:20px}
-    }
+    :root{--ink:#33241d;--green:#176d50;--green-dark:#10543e;--gold:#bd8a50;--cream:#eef2e8;--paper:#fffaf3;--sage:#e8eee1;--muted:#6d7265;--line:#dfe6d8}
+    *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:82px}body{margin:0;background:var(--paper);color:var(--ink);font:1.12rem/1.75 'Amiri',serif}a{color:inherit;text-decoration:none}img{max-width:100%;display:block}button,input,select,textarea{font:inherit}
+    .container{width:min(1160px,calc(100% - 32px));margin:auto}.top{position:sticky;top:0;z-index:5;background:#fffaf3ed;backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}.nav{min-height:72px;display:flex;align-items:center;justify-content:space-between;gap:18px}.logo{font-size:2rem;color:var(--green-dark);font-weight:700;white-space:nowrap}.links{display:flex;align-items:center;gap:22px;flex-wrap:wrap}.links a:hover{color:var(--green)}
+    .btn{display:inline-flex;justify-content:center;align-items:center;padding:9px 22px;border:0;border-radius:999px;background:var(--green);color:white;font-weight:700;cursor:pointer;transition:.2s}.btn:hover{background:var(--green-dark);transform:translateY(-1px)}.btn-light{background:white;color:var(--green-dark);border:1px solid var(--line)}.btn-light:hover{color:white}
+    .update-banner{display:none;position:sticky;top:72px;z-index:4;background:#fff7dd;border-bottom:1px solid #ead6a5;padding:9px 0}.update-banner.show{display:block}.update-row{display:flex;justify-content:space-between;gap:12px;align-items:center}.update-row button{border:0;border-radius:999px;padding:5px 14px;background:var(--green);color:white;cursor:pointer;font:inherit}
+    .hero{background:radial-gradient(ellipse at 75% 30%,#dfe9dc 0,transparent 38%),var(--cream);padding:56px 0 64px}.hero-grid{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:44px}.tag{display:inline-block;padding:6px 15px;border-radius:999px;background:#176d5014;color:var(--green);font-weight:700}.hero h1{font-size:clamp(2.8rem,5vw,5rem);line-height:1.12;color:var(--green-dark);margin:14px 0 8px}.hero p{font-size:1.2rem;color:var(--muted);max-width:570px;margin:0 0 20px}.hero-actions{display:flex;gap:12px;flex-wrap:wrap}.hero-photo{border-radius:26px;overflow:hidden;background:white;border:5px solid white;box-shadow:0 14px 35px #33241d20}.hero-photo img{width:100%;height:390px;object-fit:contain;background:#fff}
+    .section{padding:68px 0}.section-title{text-align:center;margin:0 auto 30px}.section-title h2{font-size:clamp(2rem,4vw,3rem);color:var(--green);margin:8px 0}.section-title p{color:var(--muted);margin:0}.filters{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:0 0 24px}.filter{border:1px solid var(--line);border-radius:999px;background:white;padding:7px 18px;cursor:pointer;color:var(--green-dark)}.filter.active,.filter:hover{background:var(--green);color:white;border-color:var(--green)}
+    .products{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}.product-card{background:white;border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:0 8px 22px #33241d0a}.product-card[hidden]{display:none}.product-card img{width:100%;height:220px;object-fit:contain;background:#fff}.product-info{padding:14px 16px 18px}.product-info h3{margin:0;color:var(--green-dark);font-size:1.45rem}.category-label{font-size:.92rem;color:var(--muted)}.product-bottom{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:12px}.price{color:var(--green);font-weight:700}.product-bottom .btn{padding:6px 15px}
+    .gallery{background:#f4eee3}.gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.gallery-grid a{border:5px solid white;border-radius:16px;overflow:hidden;box-shadow:0 8px 22px #33241d12}.gallery-grid img{width:100%;height:220px;object-fit:contain;background:#fff;transition:transform .25s}.gallery-grid a:hover img{transform:scale(1.04)}
+    .offers{background:#f8f5ed}.info-card{max-width:760px;margin:auto;padding:28px;background:var(--cream);border:1px dashed var(--gold);border-radius:24px;text-align:center}.info-card h3{color:var(--green-dark);font-size:1.8rem;margin:0 0 6px}.info-card p{margin:0;color:var(--muted)}.pending{display:inline-block;margin-top:12px;padding:5px 14px;border-radius:999px;background:#bd8a501c;color:#765323;font-weight:700}
+    .quick-order{background:var(--paper)}.order-card{max-width:760px;margin:auto;padding:26px;background:white;border:1px solid var(--line);border-radius:22px;box-shadow:0 10px 28px #52674710}.order-fields{display:grid;grid-template-columns:1fr 1fr;gap:14px}.field{display:flex;flex-direction:column;gap:5px}.field label{font-weight:700;color:var(--green-dark)}.field select,.field input,.rating-box textarea{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:white;color:var(--ink)}.order-hint{margin:14px 0 0;color:var(--muted);font-size:.95rem}.order-card .btn{margin-top:16px}
+    .rating{background:var(--sage)}.rating-box{max-width:680px;margin:auto;padding:26px;background:white;border:1px solid var(--line);border-radius:22px;text-align:center}.stars{display:flex;justify-content:center;gap:10px;font-size:2.2rem;cursor:pointer;user-select:none}.star{color:#d5d5d5;transition:.15s}.star.active{color:#e7ad31}.rating-box textarea{min-height:100px;margin-top:12px;resize:vertical}.rating-box .btn{margin-top:12px}
+    .contact{padding:52px 0;background:var(--green);color:white}.contact-row{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}.contact h2{font-size:2.2rem;margin:0}.contact p{margin:5px 0 0}.contact-actions{display:flex;gap:10px;flex-wrap:wrap}.whatsapp-float{position:fixed;z-index:10;right:18px;bottom:18px;display:flex;align-items:center;gap:8px;padding:10px 18px;background:#168c55;color:white;border:2px solid white;border-radius:999px;box-shadow:0 8px 26px #173a2b35;font-weight:700}footer{background:#211d19;color:#fff;padding:18px 0}.footer-row{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+    @media(max-width:900px){.products{grid-template-columns:repeat(3,minmax(0,1fr))}.gallery-grid{grid-template-columns:repeat(3,1fr)}}
+    @media(max-width:760px){.nav{flex-wrap:wrap;padding:8px 0;gap:5px 12px}.links{order:3;flex:0 0 100%;gap:18px;overflow-x:auto;white-space:nowrap;padding:3px 2px 8px}.hero-grid{grid-template-columns:1fr;gap:24px}.hero-photo img{height:320px}.products{grid-template-columns:repeat(2,minmax(0,1fr))}.gallery-grid{grid-template-columns:repeat(2,1fr)}.section{padding:52px 0}}
+    @media(max-width:480px){.products,.gallery-grid,.order-fields{grid-template-columns:1fr}.product-card img{height:250px}.hero-photo img{height:270px}.hero-actions .btn{flex:1}.update-row{align-items:flex-start}.whatsapp-float{right:12px;bottom:12px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important}}
   </style>
 </head>
 <body>
-  <div class="top">
-    <div class="container nav">
-      <a class="logo" href="#home" aria-label="كبايتي">
-        <span class="logo-mark">ك</span>
-        <span>كبايتي</span>
-      </a>
-      <nav class="links" aria-label="التنقل">
-        <a href="#home">الرئيسية</a>
-        <a href="#flavors">الأنواع</a>
-        <a href="#gallery">المعرض</a>
-        <a href="#product">المنتج</a>
-        <a href="#offers">العروض</a>
-        <a href="#quick-order">اطلب الآن</a>
-        <a href="#rating">التقييمات</a>
-        <a href="#contact">تواصل</a>
-      </nav>
-      <a href="https://wa.me/963990424380?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%20%D8%A7%D8%B3%D8%AA%D9%81%D8%A7%D9%85%20%D8%A7%D9%84%D9%88%D9%82%D8%B7%D8%B1%20%D9%85%D9%84%D8%A3%D8%B9%D8%B2%D8%A7%D9%85%20%D9%82%D8%A8%D9%83%D8%A9" class="btn" target="_blank">اطلب الآن</a>
-    </div>
-  </div>
+  <div class="top"><div class="container nav">
+    <a class="logo" href="#home">كبايتي</a>
+    <nav class="links" aria-label="التنقل">
+      <a href="#home">الرئيسية</a><a href="#products">الأنواع</a><a href="#gallery">معرض الصور</a><a href="#offers">العروض</a><a href="#delivery">التوصيل</a><a href="#quick-order">اطلب الآن</a><a href="#rating">التقييم</a>
+    </nav>
+    <a class="btn" href="https://wa.me/963990424380" target="_blank" rel="noopener">اطلب عبر واتساب</a>
+  </div></div>
+  <div class="update-banner" id="updateBanner" role="status" aria-live="polite"><div class="container update-row"><span>يتوفر تحديث جديد للموقع.</span><button id="refreshNowBtn" type="button">تحديث الآن</button></div></div>
 
-  <main id="home">
-    <section class="hero">
-      <div class="container hero-grid">
-        <div class="hero-copy">
-          <span class="tag">أصالة المذاق</span>
-          <h1>كبايتي</h1>
-          <p>كبة مغلفة بطعم أصيل، طازجة، ومعدّة بعناية لتناسب كل ضيافة، وكل عائلة، وكل مناسبة.</p>
-          <div class="hero-actions">
-            <a href="#quick-order" class="btn">اطلب الآن</a>
-            <a href="tel:+963990424380" class="btn btn-light">اتصل بنا</a>
-          </div>
-          <div class="mini-stats">
-            <div><strong>12+</strong><span>أنواع</span></div>
-            <div><strong>5/5</strong><span>تقييم</span></div>
-            <div><strong>24/7</strong><span>طلب</span></div>
-          </div>
-        </div>
-        <div class="hero-visual">
-          <div class="hero-photo">
-            <img src="https://raw.githubusercontent.com/m12h00/capta/main/WhatsApp%20Image%202026-11-07%20at%208.57.31%20PM.jpeg" alt="كبايتي المنتج الرئيسي">
-          </div>
-        </div>
+  <main>
+    <section class="hero" id="home"><div class="container hero-grid">
+      <div><span class="tag">مذاق أصيل من الشام</span><h1>كبايتي</h1><p>كبة وبرك وأطباق شامية محضّرة بعناية — اختاروا النوع اللي بتحبوه واطلبوه بسهولة.</p>
+        <div class="hero-actions"><a class="btn" href="#products">شاهدوا الأنواع</a><a class="btn btn-light" href="tel:+963990424380">اتصلوا بنا</a></div>
       </div>
-    </section>
+      <div class="hero-photo"><img src="https://raw.githubusercontent.com/m12h00/capta/main/WhatsApp%20Image%202026-11-07%20at%208.57.49%20PM.jpeg" alt="كبة مقلية من كبايتي"></div>
+    </div></section>
 
-    <section class="section" id="flavors">
-      <div class="container">
-        <div class="section-title">
-          <span class="tag">اختر النكهة</span>
-          <h2>أنواع كبايتي</h2>
-          <p>كل نوع بنكهة مميزة ومذاق متوازن</p>
-        </div>
-
-        <div class="flavors-grid">
-          <article class="flavor">
-            <img src="https://raw.githubusercontent.com/m12h00/capta/main/WhatsApp%20Image%202026-11-07%20at%208.57.34%20PM.jpeg" alt="كبة مقلية">
-            <div class="flavor-body">
-              <h3>كبة مقلية</h3>
-              <p>مذاق تقليدي غني وممتاز.</p>
-              <div class="flavor-row">
-                <span class="flavor-price">سيتم تحديد السعر</span>
-                <a href="#quick-order" class="btn">اطلب</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="flavor">
-            <img src="https://raw.githubusercontent.com/m12h00/capta/main/WhatsApp%20Image%202026-11-07%20at%208.57.35%20PM.jpeg" alt="كبة مشوية">
-            <div class="flavor-body">
-              <h3>كبة مشوية</h3>
-              <p>نكهة ناعمة ومناسبة للجميع.</p>
-              <div class="flavor-row">
-                <span class="flavor-price">سيتم تحديد السعر</span>
-                <a href="#quick-order" class="btn">اطلب</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="flavor">
-            <img src="https://raw.githubusercontent.com/m12h00/capta/main/WhatsApp%20Image%202026-11-07%20at%208.57.37%20PM.jpeg" alt="كبة نباتية">
-            <div class="flavor-body">
-              <h3>كبة نباتية</h3>
-              <p>خيار ممتاز لمن يفضل المذاق النباتي.</p>
-              <div class="flavor-row">
-                <span class="flavor-price">سيتم تحديد السعر</span>
-                <a href="#quick-order" class="btn">اطلب</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="flavor">
-            <img src="https://raw.githubusercontent.com/m12h00/capta/main/WhatsApp%20Image%202026-11-07%20at%208.57.49%20PM.jpeg" alt="برك جبنة">
-            <div class="flavor-body">
-              <h3>برك جبنة</h3>
-              <p>حشوة كريمية ونكهة مميزة.</p>
-              <div class="flavor-row">
-                <span class="flavor-price">سيتم تحديد السعر</span>
-                <a href="#quick-order" class="btn">اطلب</a>
-              </div>
-            </div>
-          </article>
-        </div>
+    <section class="section" id="products"><div class="container">
+      <div class="section-title"><span class="tag">اختاروا اللي بتحبوه</span><h2>أنواع كبايتي</h2><p>الأسعار تُضاف قريبًا — للطلب والاستفسار تواصلوا معنا.</p></div>
+      <div class="filters" aria-label="تصفية المنتجات">
+        <button class="filter active" type="button" data-filter="all">الكل</button><button class="filter" type="button" data-filter="kibbeh">الكبة</button><button class="filter" type="button" data-filter="borak">البرك</button><button class="filter" type="button" data-filter="other">أصناف أخرى</button>
       </div>
-    </section>
-
-    <section class="section gallery" id="gallery">
-      <div class="container">
-        <div class="section-title">
-          <span class="tag">تجربة مرئية</span>
-          <h2>معرض الصور</h2>
-          <p>صور منتجاتنا من داخل العلب</p>
-        </div>
-        <div class="gallery-grid">
-          <img src="https://raw.githubusercontent.com/m12h00/capta/main/WhatsApp%20Image%202026-11-07%20at%208.57.31%20PM.jpeg" alt="معرض1">
-          <img src="https://raw.githubusercontent.com/m12h00/capta/main/WhatsApp%20Image%202026-11-07%20at%208.57.34%20PM.jpeg" alt="معرض2">
-          <img src="https://raw.githubusercontent.com/m12h00/capta/main/WhatsApp%20Image%202026-11-07%20at%208.57.46%20PM.jpeg" alt="معرض3">
-          <img src="https://raw.githubusercontent.com/m12h00/capta/main/WhatsApp%20Image%202026-11-07%20at%208.57.47%20PM.jpeg" alt="معرض4">
-        </div>
+      <div class="products">
+        <article class="product-card" data-category="kibbeh"><img src="https://raw.githubusercontent.com/m12h00/capta/main/WhatsApp%20Image%202026-11-07%20at%208.57.31%20PM.jpeg" alt="كبة نباتية باليقطين"><div class="product-info"><h3>كبة نباتية باليقطين</h3><span class="category-label">كبة نباتية</span><div class="product-bottom"><span class="price">السعر عند الطلب</span><a class="btn order-link" href="#quick-order" data-product="كبة نباتية باليقطين">اطلب</a></div></div></article>
+        <article class="product-card" data-category="kibbeh"><img src="https://raw.githubusercontent.com/m12h00/capta/main/WhatsApp%20Image%202026-11-07%20at%208.57.34%20PM.jpeg" alt="كبة مشوية"><div class="product-info"><h3>كبة مشوية</h3><span class="category-label">كبة لحم</span><div class="product-bottom"><span class="price">السعر عند الطلب</span><a class="btn order-link" href="#quick-order" data-product="كبة مشوية">اطلب</a></div></div></article>
+        <article class="product-card" data-category="kibbeh"><img src="https://raw.githubusercontent.com/m12h00/capta/main/WhatsApp%20Image%202026-11-07%20at%208.57.35%20PM.jpeg" alt="كبة مقلية"><div class="product-info"><h3>كبة مقلية</h3><span class="category-label">كبة لحم</span><div class="product-bottom"><span class="price">السعر عند الطلب</span><a class="btn order-link" href="#quick-order" data-product="كبة مقلية">اطلب</a></div></div></article>
+        <article class="product-card" data-category="other"><img src="https://raw.githubusercontent.com/m12h00/capta/main/WhatsApp%20Image%202026-11-07%20at%208.57.36%20PM.jpeg" alt="شيش برك"><div class="product-info"><h3>شيش برك</h3><span class="category-label">أطباق شامية</span><div class="product-bottom"><span class="price">السعر عند الطلب</span><a class="btn order-link" href="#quick-order" data-product="شيش برك">اطلب</a></div></div></article>
+        <article class="product-card" data-category="borak"><img src="https://raw.githubusercontent.com/m12h00/capta/main/WhatsApp%20Image%202026-11-07%20at%208.57.37%20PM.jpeg" alt="برك جبنة"><div class="product-info"><h3>برك جبنة</h3><span class="category-label">برك</span><div class="product-bottom"><span class="price">السعر عند الطلب</span><a class="btn order-link" href="#quick-order" data-product="برك جبنة">اطلب</a></div></div></article>
+        <article class="product-card" data-category="kibbeh"><img src="https://raw.githubusercontent.com/m12h00/capta/main/WhatsApp%20Image%202026-11-07%20at%208.57.46%20PM%20(1).jpeg" alt="كبة نباتية بالشمندر"><div class="product-info"><h3>كبة نباتية بالشمندر</h3><span class="category-label">كبة نباتية</span><div class="product-bottom"><span class="price">السعر عند الطلب</span><a class="btn order-link" href="#quick-order" data-product="كبة نباتية بالشمندر">اطلب</a></div></div></article>
+        <article class="product-card" data-category="borak"><img src="https://raw.githubusercontent.com/m12h00/capta/main/WhatsApp%20Image%202026-11-07%20at%208.57.46%20PM%20(2).jpeg" alt="برك لحم"><div class="product-info"><h3>برك لحم</h3><span class="category-label">برك</span><div class="product-bottom"><span class="price">السعر عند الطلب</span><a class="btn order-link" href="#quick-order" data-product="برك لحم">اطلب</a></div></div></article>
+        <article class="product-card" data-category="other"><img src="https://raw.githubusercontent.com/m12h00/capta/main/WhatsApp%20Image%202026-11-07%20at%208.57.46%20PM.jpeg" alt="فطيرة التفاح"><div class="product-info"><h3>فطيرة التفاح</h3><span class="category-label">حلويات</span><div class="product-bottom"><span class="price">السعر عند الطلب</span><a class="btn order-link" href="#quick-order" data-product="فطيرة التفاح">اطلب</a></div></div></article>
+        <article class="product-card" data-category="kibbeh"><img src="https://raw.githubusercontent.com/m12h00/capta/main/WhatsApp%20Image%202026-11-07%20at%208.57.47%20PM%20(1).jpeg" alt="كبة نباتية يالانجي"><div class="product-info"><h3>كبة نباتية يالانجي</h3><span class="category-label">كبة نباتية</span><div class="product-bottom"><span class="price">السعر عند الطلب</span><a class="btn order-link" href="#quick-order" data-product="كبة نباتية يالانجي">اطلب</a></div></div></article>
+        <article class="product-card" data-category="kibbeh"><img src="https://raw.githubusercontent.com/m12h00/capta/main/WhatsApp%20Image%202026-11-07%20at%208.57.47%20PM.jpeg" alt="كبة مقلية خالية من الغلوتين"><div class="product-info"><h3>كبة مقلية خالية من الغلوتين</h3><span class="category-label">كبة خاصة</span><div class="product-bottom"><span class="price">السعر عند الطلب</span><a class="btn order-link" href="#quick-order" data-product="كبة مقلية خالية من الغلوتين">اطلب</a></div></div></article>
+        <article class="product-card" data-category="kibbeh"><img src="https://raw.githubusercontent.com/m12h00/capta/main/WhatsApp%20Image%202026-11-07%20at%208.57.48%20PM%20(1).jpeg" alt="كبة لبنية"><div class="product-info"><h3>كبة لبنية</h3><span class="category-label">كبة لحم</span><div class="product-bottom"><span class="price">السعر عند الطلب</span><a class="btn order-link" href="#quick-order" data-product="كبة لبنية">اطلب</a></div></div></article>
+        <article class="product-card" data-category="kibbeh"><img src="https://raw.githubusercontent.com/m12h00/capta/main/WhatsApp%20Image%202026-11-07%20at%208.57.48%20PM.jpeg" alt="كبة نباتية بالبطاطا"><div class="product-info"><h3>كبة نباتية بالبطاطا</h3><span class="category-label">كبة نباتية</span><div class="product-bottom"><span class="price">السعر عند الطلب</span><a class="btn order-link" href="#quick-order" data-product="كبة نباتية بالبطاط��">اطلب</a></div></div></article>
+        <article class="product-card" data-category="kibbeh"><img src="https://raw.githubusercontent.com/m12h00/capta/main/WhatsApp%20Image%202026-11-07%20at%208.57.49%20PM.jpeg" alt="كبة مقلية"><div class="product-info"><h3>كبة مقلية</h3><span class="category-label">كبة لحم</span><div class="product-bottom"><span class="price">السعر عند الطلب</span><a class="btn order-link" href="#quick-order" data-product="كبة مقلية">اطلب</a></div></div></article>
       </div>
-    </section>
+    </div></section>
 
-    <section class="section" id="product">
-      <div class="container">
-        <div class="section-title">
-          <span class="tag">تفاصيل المنتج</span>
-          <h2>كبايتي بجودة عالية</h2>
-        </div>
-
-        <div class="product">
-          <div>
-            <h3>علبة كبة مقلية</h3>
-            <p>مقدم في علب مناسبة للعائلة، مع قوام مميز وطعم تقليدي. مناسب للضيافة والوجبات السريعة.</p>
-          </div>
-          <div class="product-box">
-            <strong>500غ</strong>
-            <span>12 قطعة</span>
-            <span>مناسب للطلب اليومي</span>
-          </div>
-        </div>
+    <section class="section gallery" id="gallery"><div class="container"><div class="section-title"><span class="tag">صور المنتجات</span><h2>معرض الصور</h2><p>كل صور المنتجات المرسلة، بدون صور خارجية.</p></div>
+      <div class="gallery-grid">
+        <a href="https://raw.githubusercontent.com/m12h00/capta/main/WhatsApp%20Image%202026-11-07%20at%208.57.31%20PM.jpeg" target="_blank" rel="noopener"><img loading="lazy" src="https://raw.githubusercontent.com/m12h00/capta/main/WhatsApp%20Image%202026-11-07%20at%208.57.31%20PM.jpeg" alt="كبة نباتية باليقطين"></a>
+        <a href="https://raw.githubusercontent.com/m12h00/capta/main/WhatsApp%20Image%202026-11-07%20at%208.57.34%20PM.jpeg" target="_blank" rel="noopener"><img loading="lazy" src="https://raw.githubusercontent.com/m12h00/capta/main/WhatsApp%20Image%202026-11-07%20at%208.57.34%20PM.jpeg" alt="كبة مشوية"></a>
+        <a href="https://raw.githubusercontent.com/m12h00/capta/main/WhatsApp%20Image%202026-11-07%20at%208.57.35%20PM.jpeg" target="_blank" rel="noopener"><img loading="lazy" src="https://raw.githubusercontent.com/m12h00/capta/main/WhatsApp%20Image%202026-11-07%20at%208.57.35%20PM.jpeg" alt="كبة مقلية"></a>
+        <a href="https://raw.githubusercontent.com/m12h00/capta/main/WhatsApp%20Image%202026-11-07%20at%208.57.36%20PM.jpeg" target="_blank" rel="noopener"><img loading="lazy" src="https://raw.githubusercontent.com/m12h00/capta/main/WhatsApp%20Image%202026-11-07%20at%208.57.36%20PM.jpeg" alt="شيش برك"></a>
+        <a href="https://raw.githubusercontent.com/m12h00/capta/main/WhatsApp%20Image%202026-11-07%20at%208.57.37%20PM.jpeg" target="_blank" rel="noopener"><img loading="lazy" src="https://raw.githubusercontent.com/m12h00/capta/main/WhatsApp%20Image%202026-11-07%20at%208.57.37%20PM.jpeg" alt="برك جبنة"></a>
+        <a href="https://raw.githubusercontent.com/m12h00/capta/main/WhatsApp%20Image%202026-11-07%20at%208.57.46%20PM%20(1).jpeg" target="_blank" rel="noopener"><img loading="lazy" src="https://raw.githubusercontent.com/m12h00/capta/main/WhatsApp%20Image%202026-11-07%20at%208.57.46%20PM%20(1).jpeg" alt="كبة نباتية بالشمندر"></a>
+        <a href="https://raw.githubusercontent.com/m12h00/capta/main/WhatsApp%20Image%202026-11-07%20at%208.57.46%20PM%20(2).jpeg" target="_blank" rel="noopener"><img loading="lazy" src="https://raw.githubusercontent.com/m12h00/capta/main/WhatsApp%20Image%202026-11-07%20at%208.57.46%20PM%20(2).jpeg" alt="برك لحم"></a>
+        <a href="https://raw.githubusercontent.com/m12h00/capta/main/WhatsApp%20Image%202026-11-07%20at%208.57.46%20PM.jpeg" target="_blank" rel="noopener"><img loading="lazy" src="https://raw.githubusercontent.com/m12h00/capta/main/WhatsApp%20Image%202026-11-07%20at%208.57.46%20PM.jpeg" alt="فطيرة التفاح"></a>
+        <a href="https://raw.githubusercontent.com/m12h00/capta/main/WhatsApp%20Image%202026-11-07%20at%208.57.47%20PM%20(1).jpeg" target="_blank" rel="noopener"><img loading="lazy" src="https://raw.githubusercontent.com/m12h00/capta/main/WhatsApp%20Image%202026-11-07%20at%208.57.47%20PM%20(1).jpeg" alt="كبة نباتية يالانجي"></a>
+        <a href="https://raw.githubusercontent.com/m12h00/capta/main/WhatsApp%20Image%202026-11-07%20at%208.57.47%20PM.jpeg" target="_blank" rel="noopener"><img loading="lazy" src="https://raw.githubusercontent.com/m12h00/capta/main/WhatsApp%20Image%202026-11-07%20at%208.57.47%20PM.jpeg" alt="كبة مقلية خالية من الغلوتين"></a>
+        <a href="https://raw.githubusercontent.com/m12h00/capta/main/WhatsApp%20Image%202026-11-07%20at%208.57.48%20PM%20(1).jpeg" target="_blank" rel="noopener"><img loading="lazy" src="https://raw.githubusercontent.com/m12h00/capta/main/WhatsApp%20Image%202026-11-07%20at%208.57.48%20PM%20(1).jpeg" alt="كبة لبنية"></a>
+        <a href="https://raw.githubusercontent.com/m12h00/capta/main/WhatsApp%20Image%202026-11-07%20at%208.57.48%20PM.jpeg" target="_blank" rel="noopener"><img loading="lazy" src="https://raw.githubusercontent.com/m12h00/capta/main/WhatsApp%20Image%202026-11-07%20at%208.57.48%20PM.jpeg" alt="كبة نباتية بالبطاطا"></a>
+        <a href="https://raw.githubusercontent.com/m12h00/capta/main/WhatsApp%20Image%202026-11-07%20at%208.57.49%20PM.jpeg" target="_blank" rel="noopener"><img loading="lazy" src="https://raw.githubusercontent.com/m12h00/capta/main/WhatsApp%20Image%202026-11-07%20at%208.57.49%20PM.jpeg" alt="كبة مقلية"></a>
       </div>
-    </section>
+    </div></section>
 
-    <section class="section offers" id="offers">
-      <div class="container">
-        <div class="section-title">
-          <span class="tag">قريبًا</span>
-          <h2>العروض</h2>
-          <p>سنعرض لكم أفضل العروض في أقرب وقت</p>
-        </div>
-        <div class="offer-card">
-          <h3>العروض قيد التطوير</h3>
-          <p>سنقوم بإظهار العروض الخاصة قريبا على الموقع.</p>
-          <span class="pending">جاري التطوير</span>
-        </div>
-      </div>
-    </section>
+    <section class="section offers" id="offers"><div class="container"><div class="section-title"><span class="tag">قريبًا</span><h2>العروض</h2></div><div class="info-card"><h3>عروض كبايتي</h3><p>سنضيف تفاصيل العروض قريبًا.</p><span class="pending">جاري التطوير</span></div></div></section>
+    <section class="section" id="delivery"><div class="container"><div class="section-title"><span class="tag">دمشق، سوريا</span><h2>التوصيل</h2></div><div class="info-card"><h3>معلومات التوصيل</h3><p>سنضيف تفاصيل مناطق التوصيل والأسعار قريبًا.</p><span class="pending">جاري التطوير</span></div></div></section>
 
-    <section class="section quick-order" id="quick-order">
-      <div class="container">
-        <div class="section-title">
-          <span class="tag">بخطوتين وسهلة</span>
-          <h2>اطلب طلبك الآن</h2>
-          <p>اختر النكهة والكمية وسنرسل لك الطلب عبر واتساب</p>
-        </div>
+    <section class="section quick-order" id="quick-order"><div class="container"><div class="section-title"><span class="tag">بخطوتين وبس</span><h2>اطلب طلبك بسرعة</h2><p>حدد المنتج والكمية، وسنجهز رسالة واتساب بطلبك.</p></div><div class="order-card">
+      <form id="orderForm"><div class="order-fields">
+        <div class="field"><label for="productSelect">نوع المنتج</label><select id="productSelect">
+          <option>كبة نباتية باليقطين</option><option>كبة مشوية</option><option>كبة مقلية</option><option>شيش برك</option><option>برك جبنة</option><option>كبة نباتية بالشمندر</option><option>برك لحم</option><option>فطيرة التفاح</option><option>كبة نباتية يالانجي</option><option>كبة مقلية خالية من الغلوتين</option><option>كبة لبنية</option><option>كبة نباتية بالبطاطا</option>
+        </select></div>
+        <div class="field"><label for="quantity">الكمية (علب)</label><input id="quantity" type="number" min="1" max="100" value="1" required></div>
+        <div class="field"><label for="customerAddress">العنوان أو الحي</label><input id="customerAddress" type="text" placeholder="اكتب الحي في دمشق (اختياري)"></div>
+        <div class="field"><label for="customerNote">ملاحظة</label><input id="customerNote" type="text" placeholder="أي تفاصيل إضافية (اختياري)"></div>
+      </div><p class="order-hint">الأسعار وتفاصيل التوصيل تُؤكَّد عند التواصل.</p><button class="btn" type="submit">أرسل الطلب عبر واتساب</button></form>
+    </div></div></section>
 
-        <div class="order-card">
-          <form id="orderForm">
-            <div class="order-fields">
-              <div class="field">
-                <label for="flavorSelect">نوع المنتج</label>
-                <select id="flavorSelect">
-                  <option value="كبة مقلية">كبة مقلية</option>
-                  <option value="كبة مشوية">كبة مشوية</option>
-                  <option value="كبة نباتية">كبة نباتية</option>
-                  <option value="برك جبنة">برك جبنة</option>
-                  <option value="شيش برك">شيش برك</option>
-                </select>
-              </div>
+    <section class="section rating" id="rating"><div class="container"><div class="section-title"><span class="tag">رأيك يهمنا</span><h2>قيّم تجربتك</h2><p>اختر عدد النجوم وأرسل تقييمك لنا عبر واتساب.</p></div><div class="rating-box"><div class="stars" role="group" aria-label="اختر تقييمًا من نجمة إلى خمس نجوم"><button class="star" type="button" data-value="1" aria-label="نجمة واحدة">★</button><button class="star" type="button" data-value="2" aria-label="نجمتان">★</button><button class="star" type="button" data-value="3" aria-label="ثلاث نجوم">★</button><button class="star" type="button" data-value="4" aria-label="أربع نجوم">★</button><button class="star" type="button" data-value="5" aria-label="خمس نجوم">★</button></div><p id="ratingLabel" aria-live="polite">اختر تقييمك</p><form id="ratingForm"><textarea id="ratingText" placeholder="اكتب تعليقك (اختياري)"></textarea><button class="btn" type="submit">إرسال التقييم عبر واتساب</button></form></div></div></section>
 
-              <div class="field">
-                <label for="quantity">الكمية</label>
-                <input id="quantity" type="number" min="1" value="1">
-              </div>
-
-              <div class="field">
-                <label for="currencySelect">العملة</label>
-                <select id="currencySelect">
-                  <option value="SYP">الليرة السورية</option>
-                  <option value="AED">الدرهم الإماراتي</option>
-                  <option value="SAR">الريال السعودي</option>
-                  <option value="EGP">الجنيه المصري</option>
-                </select>
-              </div>
-
-              <div class="field">
-                <label for="address">العنوان</label>
-                <input id="address" type="text" placeholder="المدينة / الحي">
-              </div>
-            </div>
-
-            <div class="order-total" id="orderTotal">إجمالي الطلب: 0.00 ل.س</div>
-
-            <div class="order-actions">
-              <button class="btn" type="submit">إرسال الطلب عبر واتساب</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </section>
-
-    <section class="section rating" id="rating">
-      <div class="container">
-        <div class="section-title">
-          <span class="tag">رأيك يهمنا</span>
-          <h2>قيّم التجربة</h2>
-          <p>ساعدنا في تحسين الخدمة</p>
-        </div>
-
-        <div class="rating-box">
-          <div class="stars" aria-label="تقييم النجوم">
-            <span class="star" data-value="1">★</span>
-            <span class="star" data-value="2">★</span>
-            <span class="star" data-value="3">★</span>
-            <span class="star" data-value="4">★</span>
-            <span class="star" data-value="5">★</span>
-          </div>
-
-          <form id="ratingForm">
-            <textarea id="ratingText" placeholder="اكتب تقييمك..."></textarea>
-            <button class="btn" type="submit">إرسال التقييم</button>
-          </form>
-        </div>
-      </div>
-    </section>
-
-    <section class="contact" id="contact">
-      <div class="container contact-row">
-        <div>
-          <h2>يسعدنا طلبك</h2>
-          <p>للطلب والاستفسار تواصل معنا عبر واتساب أو اتصال مباشر</p>
-        </div>
-        <div class="contact-actions">
-          <a href="https://wa.me/963990424380?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%20%D9%84%D8%B7%D9%84%D8%A8%20%D8%A7%D9%84%D9%85%D8%AF%D9%81%D9%84%D8%8A%20%D9%84%D9%83%D8%A8%D8%A7%D9%8A%D8%AA%D9%8A" class="btn btn-light" target="_blank">واتساب</a>
-          <a href="tel:+963990424380" class="btn btn-light">اتصال</a>
-        </div>
-      </div>
-    </section>
+    <section class="contact" id="contact"><div class="container contact-row"><div><h2>يسعدنا طلبكم</h2><p>للطلب والاستفسار في دمشق تواصلوا معنا عبر واتساب أو اتصال.</p></div><div class="contact-actions"><a class="btn btn-light" href="https://wa.me/963990424380" target="_blank" rel="noopener">واتساب</a><a class="btn btn-light" href="tel:+963990424380">اتصال</a></div></div></section>
   </main>
-
-  <footer>
-    <div class="container footer-row">
-      <div>© 2025 كبايتي</div>
-      <div>دمشق، سوريا</div>
-    </div>
-  </footer>
-
-  <a class="whatsapp-float" href="https://wa.me/963990424380?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%20%D8%A7%D9%84%D8%B7%D9%84%D8%A8%20%D8%8F%D9%84%D9%83%D8%A8%D8%A7%D9%8A%D8%AA%D9%8A" target="_blank" aria-label="طلب عبر ��اتساب"><span class="whatsapp-icon">💬</span> واتساب</a>
+  <footer><div class="container footer-row"><span>© 2026 كبايتي</span><span>دمشق، سوريا</span></div></footer>
+  <a class="whatsapp-float" href="https://wa.me/963990424380" target="_blank" rel="noopener" aria-label="تواصل عبر واتساب">💬 واتساب</a>
 
   <script>
-    const stars = [...document.querySelectorAll('.star')];
-    let selectedRating = 0;
+    const APP_VERSION='2026.11.07.2';
+    const updateBanner=document.getElementById('updateBanner');
+    document.getElementById('refreshNowBtn').addEventListener('click',()=>location.reload());
+    async function checkForUpdates(){try{const response=await fetch('./version.json?ts='+Date.now(),{cache:'no-store'});if(!response.ok)return;const data=await response.json();if(data.version&&data.version!==APP_VERSION)updateBanner.classList.add('show')}catch(error){/* Site remains usable if the version file cannot be checked. */}}
+    setInterval(checkForUpdates,30000);checkForUpdates();
 
-    stars.forEach(star => {
-      star.addEventListener('click', () => {
-        selectedRating = Number(star.dataset.value);
-        stars.forEach(item => {
-          item.classList.toggle('active', Number(item.dataset.value) <= selectedRating);
-        });
-      });
+    const filterButtons=[...document.querySelectorAll('.filter')];
+    const productCards=[...document.querySelectorAll('.product-card')];
+    filterButtons.forEach(button=>button.addEventListener('click',()=>{
+      filterButtons.forEach(item=>item.classList.toggle('active',item===button));
+      const filter=button.dataset.filter;
+      productCards.forEach(card=>card.hidden=filter!=='all'&&card.dataset.category!==filter);
+    }));
+
+    document.querySelectorAll('.order-link').forEach(link=>link.addEventListener('click',()=>{
+      document.getElementById('productSelect').value=link.dataset.product;
+    }));
+    document.getElementById('orderForm').addEventListener('submit',event=>{
+      event.preventDefault();
+      const product=document.getElementById('productSelect').value;
+      const quantity=Math.max(1,Math.min(100,Number(document.getElementById('quantity').value)||1));
+      const address=document.getElementById('customerAddress').value.trim()||'لم يحدد';
+      const note=document.getElementById('customerNote').value.trim()||'لا يوجد';
+      const message=`مرحبًا، أود طلب من كبايتي:%0Aالمنتج: ${encodeURIComponent(product)}%0Aالكمية: ${quantity} علبة%0Aالعنوان: ${encodeURIComponent(address)}%0Aملاحظة: ${encodeURIComponent(note)}`;
+      window.open(`https://wa.me/963990424380?text=${message}`,'_blank','noopener');
     });
 
-    document.getElementById('ratingForm').addEventListener('submit', (e) => {
-      e.preventDefault();
-      if (!selectedRating) {
-        alert('اختر عدد النجوم أولًا');
-        return;
-      }
-      const text = document.getElementById('ratingText').value.trim();
-      const msg = `تقييم: ${selectedRating}★\n${text ? text : 'بدون تعليق'}`;
-      window.open(`https://wa.me/963990424380?text=${encodeURIComponent(msg)}`,'_blank');
-    });
-
-    const quantityInput = document.getElementById('quantity');
-    const currencySelect = document.getElementById('currencySelect');
-    const orderTotal = document.getElementById('orderTotal');
-
-    const exchangeRates = {
-      SYP: 1,
-      AED: 1.15,
-      SAR: 1.12,
-      EGP: 1.8
-    };
-
-    function updateTotal() {
-      const qty = Math.max(1, Number(quantityInput.value) || 1);
-      quantityInput.value = qty;
-      const currency = currencySelect.value;
-      const base = 500 * qty;
-      const total = base * exchangeRates[currency];
-      const label = currency === 'SYP' ? 'ل.س' : currency;
-      orderTotal.textContent = `إجمالي الطلب: ${total.toFixed(2)} ${label}`;
-    }
-
-    quantityInput.addEventListener('input', updateTotal);
-    currencySelect.addEventListener('change', updateTotal);
-    updateTotal();
-
-    document.getElementById('orderForm').addEventListener('submit', (e) => {
-      e.preventDefault();
-      const flavor = document.getElementById('flavorSelect').value;
-      const qty = Math.max(1, Number(quantityInput.value) || 1);
-      const currency = currencySelect.value;
-      const address = document.getElementById('address').value.trim() || 'غير محدد';
-      const total = orderTotal.textContent.replace('إجمالي الطلب: ', '');
-      const msg = `مرحبًا، أريد طلبًا جديدًا:%0A- المنتج: ${flavor}%0A- الكمية: ${qty}%0A- العملة: ${currency}%0A- العنوان: ${address}%0A- الإجمالي: ${total}`;
-      window.open(`https://wa.me/963990424380?text=${msg}`,'_blank');
+    const stars=[...document.querySelectorAll('.star')];
+    const ratingLabel=document.getElementById('ratingLabel');
+    let selectedRating=0;
+    const ratingLabels=['','نجمة واحدة','نجمتان','ثلاث نجوم','أربع نجوم','خمس نجوم'];
+    stars.forEach(star=>star.addEventListener('click',()=>{
+      selectedRating=Number(star.dataset.value);
+      stars.forEach(item=>item.classList.toggle('active',Number(item.dataset.value)<=selectedRating));
+      ratingLabel.textContent=ratingLabels[selectedRating];
+    }));
+    document.getElementById('ratingForm').addEventListener('submit',event=>{
+      event.preventDefault();
+      if(!selectedRating){ratingLabel.textContent='اختر عدد النجوم أولًا';return;}
+      const comment=document.getElementById('ratingText').value.trim()||'بدون تعليق';
+      const message=`تقييم تجربة كبايتي: ${selectedRating} من 5 نجوم%0A${encodeURIComponent(comment)}`;
+      window.open(`https://wa.me/963990424380?text=${message}`,'_blank','noopener');
     });
   </script>
 </body>
