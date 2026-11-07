@@ -1,581 +1,232 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0d6d4b">
+  <meta name="description" content="كبايتي — كبة وبتزاويح مميزة في دمشق.">
   <title>كبايتي | متجر المنتجات</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
   <style>
     :root{
-      --green:#0f7d5a;
-      --green-dark:#0b5f43;
-      --cream:#f7f2ea;
-      --bg:#f0f0f0;
-      --text:#1d1d1d;
-      --muted:#656565;
-      --line:#e7dfd4;
-      --card:#fff;
-      --gold:#f5ba37;
-      --shadow:0 18px 40px rgba(0,0,0,.10);
+      --ink:#1d201d;
+      --green:#0d6d4b;
+      --green-deep:#0a563d;
+      --gold:#d39a4f;
+      --cream:#f5f1e8;
+      --paper:#fffaf6;
+      --sage:#e9f0e8;
+      --muted:#5f665d;
+      --line:#dde3d9;
+      --shadow:0 16px 30px rgba(14,63,49,.12);
     }
+    *{box-sizing:border-box} html{scroll-behavior:smooth;scroll-padding-top:82px} body{margin:0;background:var(--paper);color:var(--ink);font:1.12rem/1.8 'Amiri',serif} a{color:inherit;text-decoration:none} img{display:block;max-width:100%}
 
-    * { box-sizing: border-box; }
-    html { scroll-behavior:smooth; }
-    body{
-      margin:0;
-      font-family:Tahoma, Arial, sans-serif;
-      background:var(--bg);
-      color:var(--text);
-      line-height:1.6;
-    }
-    a{text-decoration:none; color:inherit;}
-    img{display:block; max-width:100%;}
-    .container{
-      width:min(1200px, calc(100% - 32px));
-      margin:0 auto;
-    }
+    .container{width:min(1180px,calc(100% - 32px));margin:0 auto}
+    .top{position:sticky;top:0;z-index:30;background:rgba(255,250,246,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+    .nav{min-height:72px;display:flex;align-items:center;justify-content:space-between;gap:22px;flex-wrap:wrap}
+    .logo{display:inline-flex;align-items:center;gap:10px;font-weight:700;font-size:2rem;color:var(--green-deep)}
+    .logo-mark{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#fff,#eef6f0);border:2px solid #dfeae3;color:var(--green-deep);font-size:1.7rem}
+    .links{display:flex;gap:26px;align-items:center;flex-wrap:wrap;font-size:1.05rem}
+    .links a{position:relative;padding-bottom:3px;color:var(--ink)}
+    .links a::after{content:"";position:absolute;right:0;bottom:0;width:0;height:2px;background:var(--green);transition:.25s ease}
+    .links a:hover::after,.links a:focus-visible::after{width:100%}
+    .btn{display:inline-flex;justify-content:center;align-items:center;padding:10px 22px;border:0;border-radius:999px;background:var(--green);color:#fff;font:inherit;font-weight:700;cursor:pointer;transition:.2s ease;box-shadow:var(--shadow)}
+    .btn:hover{transform:translateY(-1px)}
+    .btn-light{background:#fff;border:1px solid var(--line);color:var(--green-deep)}
 
-    .topbar{
-      background:#1b1b1b;
-      color:#fff;
-      padding:10px 0;
-      font-size:14px;
-    }
-    .topbar .wrap{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:12px;
-      flex-wrap:wrap;
-    }
+    .hero{background:radial-gradient(ellipse at 75% 30%,#dfe9dc 0,transparent 38%),var(--cream);padding:58px 0 66px}
+    .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:46px}
+    .tag{display:inline-block;padding:8px 16px;border-radius:999px;background:rgba(13,109,75,.08);color:var(--green);font-size:.9rem;font-weight:700}
+    h1{margin:16px 0 12px;font-size:clamp(2.7rem,4vw,5rem);line-height:1.05;color:var(--green-deep)}
+    .hero-copy p{margin:0 0 22px;color:var(--muted);font-size:1.2rem;max-width:580px}
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:18px}
+    .mini-stats{display:flex;gap:26px;flex-wrap:wrap;padding-top:14px;border-top:1px solid rgba(0,0,0,.08)}
+    .mini-stats strong{display:block;font-size:2rem;color:var(--green-deep)}
+    .mini-stats span{display:block;color:var(--muted);font-size:.9rem}
+    .hero-visual{display:flex;justify-content:center;align-items:center}
+    .hero-photo{max-width:560px;width:100%;border-radius:28px;overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow);background:#f0ede8}
+    .hero-photo img{width:100%;height:100%;object-fit:cover;display:block}
 
-    .header{
-      background:rgba(255,255,255,.96);
-      border-bottom:1px solid var(--line);
-      position:sticky;
-      top:0;
-      z-index:999;
-      backdrop-filter: blur(10px);
-    }
-    .nav{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:20px;
-      padding:18px 0;
-      flex-wrap:wrap;
-    }
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:12px;
-      font-weight:700;
-      font-size:30px;
-      color:var(--green-dark);
-    }
-    .brand-mark{
-      width:52px;height:52px;
-      border-radius:50%;
-      display:grid;place-items:center;
-      background:linear-gradient(135deg,#fff,#edf7f3);
-      border:2px solid #dfece4;
-      font-size:30px;
-    }
-    .nav-links{
-      display:flex;
-      align-items:center;
-      gap:24px;
-      flex-wrap:wrap;
-      font-weight:600;
-    }
-    .nav-links a{
-      position:relative;
-      padding-bottom:4px;
-    }
-    .nav-links a::after{
-      content:"";
-      position:absolute;
-      right:0; bottom:0;
-      width:0; height:2px;
-      background:var(--green);
-      transition:.25s ease;
-    }
-    .nav-links a:hover::after{width:100%;}
-    .cta{
-      display:flex; align-items:center; gap:12px; flex-wrap:wrap;
-    }
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      padding:12px 18px;
-      border-radius:999px;
-      font-weight:700;
-      border:1px solid transparent;
-      transition:.25s ease;
-      cursor:pointer;
-    }
-    .btn-primary{
-      background:linear-gradient(135deg,var(--green),var(--green-dark));
-      color:#fff;
-      box-shadow:var(--shadow);
-    }
-    .btn-primary:hover{transform:translateY(-1px);}
-    .btn-light{
-      background:#fff;
-      color:var(--green-dark);
-      border-color:var(--line);
-    }
+    .section{padding:72px 0}
+    .section-title{text-align:center;margin:0 auto 30px}
+    .section-title h2{font-size:clamp(1.9rem,3vw,3rem);margin:8px 0 4px;color:var(--green)}
+    .section-title p{margin:0;color:var(--muted)}
 
-    .hero{
-      padding:28px 0 12px;
-    }
-    .hero-box{
-      background:linear-gradient(135deg,#f8f3eb 0%,#f5f0e7 100%);
-      border:1px solid var(--line);
-      border-radius:28px;
-      overflow:hidden;
-      box-shadow:var(--shadow);
-      display:grid;
-      grid-template-columns:1.1fr 1fr;
-      align-items:center;
-    }
-    .hero-content{
-      padding:52px 38px;
-    }
-    .badge{
-      display:inline-block;
-      background:rgba(15,125,90,.08);
-      color:var(--green);
-      border-radius:999px;
-      padding:8px 14px;
-      font-weight:700;
-      font-size:14px;
-      margin-bottom:18px;
-    }
-    h1{
-      margin:0 0 14px;
-      font-size:clamp(34px,4vw,62px);
-      line-height:1.1;
-      color:var(--green-dark);
-    }
-    .lead{
-      font-size:clamp(16px,1.5vw,20px);
-      margin:0 0 26px;
-      color:var(--muted);
-      max-width:620px;
-    }
-    .hero-actions{
-      display:flex; gap:14px; flex-wrap:wrap;
-      margin-bottom:22px;
-    }
-    .hero-stats{
-      display:flex; gap:28px; flex-wrap:wrap;
-      border-top:1px solid rgba(0,0,0,.08);
-      padding-top:14px;
-    }
-    .stat strong{font-size:28px; color:var(--green-dark); display:block;}
-    .stat span{font-size:14px; color:var(--muted);}
+    .flavors-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+    .flavor{background:#fff;border:1px solid var(--line);border-radius:22px;overflow:hidden;box-shadow:0 10px 24px rgba(0,0,0,.04)}
+    .flavor img{width:100%;height:230px;object-fit:cover;display:block}
+    .flavor-body{padding:16px 18px 20px}
+    .flavor h3{margin:0 0 8px;font-size:1.6rem;color:var(--green-deep)}
+    .flavor p{margin:0;color:var(--muted)}
+    .flavor-row{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:14px}
+    .flavor-price{font-weight:700;color:var(--green)}
+    .flavor .btn{padding:8px 14px}
 
-    .hero-visual{
-      padding:18px 20px 18px 0;
-      display:flex; align-items:center; justify-content:center;
-    }
-    .hero-image{
-      width:min(100%, 620px);
-      border-radius:30px;
-      overflow:hidden;
-      box-shadow:0 25px 50px rgba(0,0,0,.12);
-      background:#ddd;
-    }
-    .hero-image img{
-      width:100%; height:100%; object-fit:cover;
-      display:block;
-    }
+    .gallery{background:#f4eee3}
+    .gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+    .gallery-grid img{display:block;width:100%;height:250px;object-fit:cover;border:5px solid #fff;border-radius:16px;box-shadow:0 10px 20px rgba(0,0,0,.05)}
 
-    .section{
-      padding:32px 0;
-    }
-    .section-head{
-      display:flex; align-items:center; justify-content:space-between;
-      gap:16px; flex-wrap:wrap;
-      margin-bottom:22px;
-    }
-    .section-head h2{
-      margin:0;
-      font-size:clamp(24px,2vw,38px);
-      color:var(--green-dark);
-    }
-    .pill{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      background:rgba(15,125,90,.08);
-      color:var(--green-dark);
-      border-radius:999px;
-      padding:8px 14px;
-      font-weight:700;
-      font-size:14px;
-    }
+    .product{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:28px;background:var(--cream);border:1px solid var(--line);border-radius:24px}
+    .product h3{margin:0 0 8px;color:var(--green-deep);font-size:2rem}
+    .product p{margin:0;color:var(--muted)}
+    .product-box{min-width:240px;background:#fff;padding:18px 22px;border:1px solid var(--line);border-radius:18px;display:flex;flex-direction:column;gap:10px;box-shadow:0 10px 20px rgba(0,0,0,.04)}
+    .product-box strong{font-size:2rem;color:var(--green)}
+    .product-box span{color:var(--muted)}
 
-    .products{
-      display:grid;
-      grid-template-columns:repeat(4, minmax(220px,1fr));
-      gap:22px;
-    }
-    .card{
-      background:var(--card);
-      border:1px solid var(--line);
-      border-radius:20px;
-      overflow:hidden;
-      box-shadow:0 10px 22px rgba(0,0,0,.04);
-      transition:transform .25s ease, box-shadow .25s ease;
-    }
-    .card:hover{
-      transform:translateY(-4px);
-      box-shadow:0 18px 28px rgba(0,0,0,.08);
-    }
-    .card-image{
-      height:220px; overflow:hidden; background:#eee;
-    }
-    .card-image img{
-      width:100%;height:100%;object-fit:cover;
-    }
-    .card-body{
-      padding:18px 18px 20px;
-    }
-    .card-title{
-      margin:0 0 8px;
-      font-size:22px;
-      color:var(--green-dark);
-    }
-    .card-text{
-      margin:0 0 14px;
-      color:var(--muted);
-      font-size:15px;
-    }
-    .card-row{
-      display:flex; justify-content:space-between; align-items:center; gap:10px;
-      margin-top:14px;
-    }
-    .price{
-      font-weight:800;
-      color:var(--green);
-      font-size:18px;
-    }
-    .mini-btn{
-      border:none;
-      border-radius:999px;
-      background:var(--green);
-      color:#fff;
-      font-weight:700;
-      padding:10px 16px;
-      cursor:pointer;
-    }
+    .offers{background:#f8f5ed}
+    .offer-card{max-width:760px;margin:auto;padding:30px;background:var(--cream);border:1px dashed var(--gold);border-radius:24px;text-align:center}
+    .offer-card h3{font-size:2rem;margin:0 0 10px;color:var(--green-deep)}
+    .offer-card p{margin:0;color:var(--muted)}
+    .pending{display:inline-block;margin-top:18px;padding:8px 14px;border-radius:999px;background:rgba(211,154,79,.12);color:#7d5d2e;font-weight:700}
 
-    .feature-strip{
-      background:linear-gradient(135deg, var(--green-dark), var(--green));
-      color:#fff;
-      border-radius:24px;
-      padding:22px;
-      display:grid;
-      grid-template-columns:repeat(4, minmax(180px,1fr));
-      gap:18px;
-    }
-    .feature{
-      display:flex; align-items:center; gap:12px;
-      background:rgba(255,255,255,.05);
-      border:1px solid rgba(255,255,255,.12);
-      border-radius:16px;
-      padding:12px;
-    }
-    .icon{
-      width:48px;height:48px;
-      display:grid;place-items:center;
-      border-radius:12px;
-      background:rgba(255,255,255,.10);
-      font-size:24px;
-    }
-    .feature strong{display:block; margin-bottom:2px;}
-    .feature span{opacity:.9; font-size:13px;}
+    .quick-order{background:var(--paper)}
+    .order-card{max-width:760px;margin:auto;padding:28px;background:white;border:1px solid var(--line);border-radius:24px;box-shadow:0 12px 30px rgba(13,109,75,.06)}
+    .order-fields{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+    .field{display:flex;flex-direction:column;gap:6px}
+    .field label{font-weight:700;color:var(--green-deep)}
+    .field select,.field input{width:100%;padding:12px 14px;border-radius:12px;border:1px solid var(--line);font:inherit;background:#fff;color:var(--ink)}
+    .order-total{margin-top:18px;padding:14px 18px;background:var(--sage);border-radius:12px;border:1px solid #dfe9e1;color:var(--green-deep);font-weight:700}
+    .order-actions{margin-top:18px;display:flex;justify-content:flex-start}
 
-    .gallery{
-      display:grid;
-      grid-template-columns:repeat(3, minmax(220px,1fr));
-      gap:18px;
-    }
-    .gallery-item{
-      overflow:hidden;
-      border-radius:22px;
-      border:1px solid var(--line);
-      background:#fff;
-      box-shadow:0 8px 18px rgba(0,0,0,.05);
-    }
-    .gallery-item img{
-      width:100%; height:260px; object-fit:cover;
-    }
+    .rating{background:var(--sage)}
+    .rating-box{max-width:680px;margin:auto;padding:28px;background:white;border:1px solid var(--line);border-radius:24px;text-align:center}
+    .stars{display:flex;justify-content:center;gap:10px;font-size:2rem;cursor:pointer;user-select:none}
+    .star{color:#d7d7d7;transition:.2s ease}
+    .star.active{color:#f4b740}
+    .rating-box form{margin-top:14px}
+    .rating-box textarea{width:100%;min-height:120px;border:1px solid var(--line);border-radius:14px;padding:14px 16px;font:inherit;resize:vertical;background:#fff}
+    .rating-box button{margin-top:12px}
 
-    .box{
-      background:#fff;
-      border:1px solid var(--line);
-      border-radius:22px;
-      padding:25px 24px;
-      box-shadow:0 8px 18px rgba(0,0,0,.04);
-    }
-    .pending{
-      display:inline-block;
-      padding:8px 14px;
-      background:rgba(245,186,55,.12);
-      color:#9f6400;
-      border-radius:999px;
-      font-weight:700;
-      font-size:14px;
-    }
+    .contact{padding:60px 0;background:var(--green);color:#fff}
+    .contact-row{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+    .contact h2{font-size:2.2rem;margin:0}
+    .contact p{margin:10px 0 0;opacity:.9}
+    .contact-actions{display:flex;gap:10px;flex-wrap:wrap}
 
-    .reviews{
-      display:grid;
-      grid-template-columns:repeat(3, minmax(220px,1fr));
-      gap:22px;
-    }
-    .review{
-      background:#fff;
-      border:1px solid var(--line);
-      border-radius:20px;
-      padding:20px;
-      box-shadow:0 8px 18px rgba(0,0,0,.04);
-    }
-    .stars{color:#f7b500; font-size:18px; letter-spacing:3px; margin-bottom:10px;}
-    .review p{margin:0; color:var(--muted);}
-    .review h4{margin:14px 0 0; color:var(--green-dark);}
+    .whatsapp-float{position:fixed;right:20px;bottom:20px;z-index:20;display:flex;align-items:center;gap:10px;padding:12px 20px;background:#1ea85d;color:white;border:2px solid white;border-radius:999px;box-shadow:0 14px 28px rgba(30,168,93,.28);font-weight:700;animation:pop 2s ease-in-out infinite}
+    @keyframes pop{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-8px) scale(1.04)}}
+    .whatsapp-icon{font-size:1.4rem}
 
-    .contact{
-      background:linear-gradient(135deg,var(--green-dark), var(--green));
-      color:#fff;
-      padding:26px 24px;
-      border-radius:24px;
-      display:flex; justify-content:space-between; align-items:center; gap:20px; flex-wrap:wrap;
-    }
-    .contact h3{
-      margin:0 0 8px; font-size:28px;
-    }
-    .contact p{
-      margin:0; opacity:.9;
-    }
+    footer{padding:22px 0 40px;background:#111}
+    .footer-row{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;color:rgba(255,255,255,.8)}
 
-    footer{
-      margin-top:30px;
-      background:#171717;
-      color:rgba(255,255,255,.9);
-      padding:22px 0 38px;
+    @media (max-width:760px){
+      .nav{flex-wrap:wrap;justify-content:space-between;gap:8px 12px;padding:10px 0}
+      .links{order:3;flex:0 0 100%;gap:18px;overflow-x:auto;white-space:nowrap;padding-bottom:6px}
+      .hero-grid,.product,.contact-row{grid-template-columns:1fr;display:grid}
+      .hero-grid{display:grid}
+      .flavors-grid,.gallery-grid,.order-fields{grid-template-columns:1fr 1fr}
+      .product-box{min-width:auto}
     }
-    .footer-row{
-      display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap;
-    }
-
-    @media (max-width:980px){
-      .hero-box{grid-template-columns:1fr;}
-      .hero-content{padding:28px 24px;}
-      .hero-visual{padding:0 20px 20px;}
-      .products{grid-template-columns:repeat(2,minmax(220px,1fr));}
-      .feature-strip{grid-template-columns:repeat(2,minmax(180px,1fr));}
-      .gallery{grid-template-columns:repeat(2,minmax(220px,1fr));}
-      .reviews{grid-template-columns:repeat(2,minmax(220px,1fr));}
-    }
-    @media (max-width:640px){
-      .products,.gallery,.reviews,.feature-strip{grid-template-columns:1fr;}
-      .nav{align-items:flex-start; flex-direction:column;}
-      .nav-links{width:100%; justify-content:space-between;}
-      .btn{width:100%;}
-      .hero-actions{flex-direction:column;}
-      .contact{align-items:flex-start;}
+    @media (max-width:520px){
+      .flavors-grid,.gallery-grid,.order-fields{grid-template-columns:1fr}
+      .product{padding:20px}
+      .order-card{padding:20px}
     }
   </style>
 </head>
 <body>
-
-  <div class="topbar">
-    <div class="container topbar wrap">
-      <div>دمشق، سوريا</div>
-      <div>واتساب: +963990424380 | اتصال: +963990424380</div>
+  <div class="top">
+    <div class="container nav">
+      <a class="logo" href="#home" aria-label="كبايتي">
+        <span class="logo-mark">ك</span>
+        <span>كبايتي</span>
+      </a>
+      <nav class="links" aria-label="التنقل">
+        <a href="#home">الرئيسية</a>
+        <a href="#flavors">الأنواع</a>
+        <a href="#gallery">المعرض</a>
+        <a href="#product">المنتج</a>
+        <a href="#offers">العروض</a>
+        <a href="#quick-order">اطلب الآن</a>
+        <a href="#rating">التقييمات</a>
+        <a href="#contact">تواصل</a>
+      </nav>
+      <a href="https://wa.me/963990424380?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%20%D8%A7%D8%B3%D8%AA%D9%81%D8%A7%D9%85%20%D8%A7%D9%84%D9%88%D9%82%D8%B7%D8%B1%20%D9%85%D9%84%D8%A3%D8%B9%D8%B2%D8%A7%D9%85%20%D9%82%D8%A8%D9%83%D8%A9" class="btn" target="_blank">اطلب الآن</a>
     </div>
   </div>
 
-  <header class="header">
-    <div class="container nav">
-      <div class="brand">
-        <div class="brand-mark">ك</div>
-        <span>كبايتي</span>
-      </div>
-
-      <nav class="nav-links">
-        <a href="#home">الرئيسية</a>
-        <a href="#products">المنتجات</a>
-        <a href="#gallery">معرض الصور</a>
-        <a href="#offers">العروض</a>
-        <a href="#delivery">التوصيل</a>
-        <a href="#reviews">التقييمات</a>
-      </nav>
-
-      <div class="cta">
-        <a href="https://wa.me/963990424380" class="btn btn-primary" target="_blank">اطلب عبر واتساب</a>
-      </div>
-    </div>
-  </header>
-
   <main id="home">
     <section class="hero">
-      <div class="container hero-box">
-        <div class="hero-content">
-          <div class="badge">منتجات مجمدة بجودة عالية</div>
-          <h1>مذاق أصيل من كبايتي</h1>
-          <p class="lead">
-            كبة، برك، وفطائر من أحلى النكهات. نختار لك المذاق التقليدي مع جودة عالية والتغليف المناسب.
-          </p>
-
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <span class="tag">أصالة المذاق</span>
+          <h1>كبايتي</h1>
+          <p>كبة مغلفة بطعم أصيل، طازجة، ومعدّة بعناية لتناسب كل ضيافة، وكل عائلة، وكل مناسبة.</p>
           <div class="hero-actions">
-            <a href="#products" class="btn btn-primary">تصفح المنتجات</a>
+            <a href="#quick-order" class="btn">اطلب الآن</a>
             <a href="tel:+963990424380" class="btn btn-light">اتصل بنا</a>
           </div>
-
-          <div class="hero-stats">
-            <div class="stat">
-              <strong>12+</strong>
-              <span>نوع منتج</span>
-            </div>
-            <div class="stat">
-              <strong>5/5</strong>
-              <span>تقييمات</span>
-            </div>
-            <div class="stat">
-              <strong>24/7</strong>
-              <span>طلب مباشر</span>
-            </div>
+          <div class="mini-stats">
+            <div><strong>12+</strong><span>أنواع</span></div>
+            <div><strong>5/5</strong><span>تقييم</span></div>
+            <div><strong>24/7</strong><span>طلب</span></div>
           </div>
         </div>
-
         <div class="hero-visual">
-          <div class="hero-image">
-            <img src="https://raw.githubusercontent.com/m12h00/capta/main/WhatsApp%20Image%202026-11-07%20at%208.57.31%20PM.jpeg" alt="كبة مقلية كبايتي" />
+          <div class="hero-photo">
+            <img src="https://raw.githubusercontent.com/m12h00/capta/main/WhatsApp%20Image%202026-11-07%20at%208.57.31%20PM.jpeg" alt="كبايتي المنتج الرئيسي">
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section" id="products">
+    <section class="section" id="flavors">
       <div class="container">
-        <div class="section-head">
-          <h2>منتجاتنا</h2>
-          <div class="pill">أفضل الأنواع</div>
+        <div class="section-title">
+          <span class="tag">اختر النكهة</span>
+          <h2>أنواع كبايتي</h2>
+          <p>كل نوع بنكهة مميزة ومذاق متوازن</p>
         </div>
 
-        <div class="products">
-          <article class="card">
-            <div class="card-image">
-              <img src="https://raw.githubusercontent.com/m12h00/capta/main/WhatsApp%20Image%202026-11-07%20at%208.57.34%20PM.jpeg" alt="كبة مقلية" />
-            </div>
-            <div class="card-body">
-              <h3 class="card-title">كبة مقلية</h3>
-              <p class="card-text">مذاق أصيل ومناسب للعائلة والضيافة.</p>
-              <div class="card-row">
-                <span class="price">سيتم تحديد السعر</span>
-                <button class="mini-btn">اطلب الآن</button>
+        <div class="flavors-grid">
+          <article class="flavor">
+            <img src="https://raw.githubusercontent.com/m12h00/capta/main/WhatsApp%20Image%202026-11-07%20at%208.57.34%20PM.jpeg" alt="كبة مقلية">
+            <div class="flavor-body">
+              <h3>كبة مقلية</h3>
+              <p>مذاق تقليدي غني وممتاز.</p>
+              <div class="flavor-row">
+                <span class="flavor-price">سيتم تحديد السعر</span>
+                <a href="#quick-order" class="btn">اطلب</a>
               </div>
             </div>
           </article>
 
-          <article class="card">
-            <div class="card-image">
-              <img src="https://raw.githubusercontent.com/m12h00/capta/main/WhatsApp%20Image%202026-11-07%20at%208.57.35%20PM.jpeg" alt="كبة مشوية" />
-            </div>
-            <div class="card-body">
-              <h3 class="card-title">كبة مشوية</h3>
-              <p class="card-text">نكهة مميزة وطعم متوازن.</p>
-              <div class="card-row">
-                <span class="price">سيتم تحديد السعر</span>
-                <button class="mini-btn">اطلب الآن</button>
+          <article class="flavor">
+            <img src="https://raw.githubusercontent.com/m12h00/capta/main/WhatsApp%20Image%202026-11-07%20at%208.57.35%20PM.jpeg" alt="كبة مشوية">
+            <div class="flavor-body">
+              <h3>كبة مشوية</h3>
+              <p>نكهة ناعمة ومناسبة للجميع.</p>
+              <div class="flavor-row">
+                <span class="flavor-price">سيتم تحديد السعر</span>
+                <a href="#quick-order" class="btn">اطلب</a>
               </div>
             </div>
           </article>
 
-          <article class="card">
-            <div class="card-image">
-              <img src="https://raw.githubusercontent.com/m12h00/capta/main/WhatsApp%20Image%202026-11-07%20at%208.57.37%20PM.jpeg" alt="كبة نباتية" />
-            </div>
-            <div class="card-body">
-              <h3 class="card-title">كبة نباتية</h3>
-              <p class="card-text">خيار رائع لمن يفضل النكهات النباتية.</p>
-              <div class="card-row">
-                <span class="price">سيتم تحديد السعر</span>
-                <button class="mini-btn">اطلب الآن</button>
+          <article class="flavor">
+            <img src="https://raw.githubusercontent.com/m12h00/capta/main/WhatsApp%20Image%202026-11-07%20at%208.57.37%20PM.jpeg" alt="كبة نباتية">
+            <div class="flavor-body">
+              <h3>كبة نباتية</h3>
+              <p>خيار ممتاز لمن يفضل المذاق النباتي.</p>
+              <div class="flavor-row">
+                <span class="flavor-price">سيتم تحديد السعر</span>
+                <a href="#quick-order" class="btn">اطلب</a>
               </div>
             </div>
           </article>
 
-          <article class="card">
-            <div class="card-image">
-              <img src="https://raw.githubusercontent.com/m12h00/capta/main/WhatsApp%20Image%202026-11-07%20at%208.57.49%20PM.jpeg" alt="كبة بطاطا" />
-            </div>
-            <div class="card-body">
-              <h3 class="card-title">كبة بطاطا</h3>
-              <p class="card-text">نوع مختلف ومناسب لذوق مختلف.</p>
-              <div class="card-row">
-                <span class="price">سيتم تحديد السعر</span>
-                <button class="mini-btn">اطلب الآن</button>
-              </div>
-            </div>
-          </article>
-
-          <article class="card">
-            <div class="card-image">
-              <img src="https://raw.githubusercontent.com/m12h00/capta/main/WhatsApp%20Image%202026-11-07%20at%208.57.46%20PM.jpeg" alt="برك جبنة" />
-            </div>
-            <div class="card-body">
-              <h3 class="card-title">برك جبنة</h3>
-              <p class="card-text">حشوة كريمية وملموسة جدًا.</p>
-              <div class="card-row">
-                <span class="price">سيتم تحديد السعر</span>
-                <button class="mini-btn">اطلب الآن</button>
-              </div>
-            </div>
-          </article>
-
-          <article class="card">
-            <div class="card-image">
-              <img src="https://raw.githubusercontent.com/m12h00/capta/main/WhatsApp%20Image%202026-11-07%20at%208.57.46%20PM%20(1).jpeg" alt="برك لحم" />
-            </div>
-            <div class="card-body">
-              <h3 class="card-title">برك لحم</h3>
-              <p class="card-text">مذاق غني ومناسب للضيافة.</p>
-              <div class="card-row">
-                <span class="price">سيتم تحديد السعر</span>
-                <button class="mini-btn">اطلب الآن</button>
-              </div>
-            </div>
-          </article>
-
-          <article class="card">
-            <div class="card-image">
-              <img src="https://raw.githubusercontent.com/m12h00/capta/main/WhatsApp%20Image%202026-11-07%20at%208.57.47%20PM.jpeg" alt="شيش برك" />
-            </div>
-            <div class="card-body">
-              <h3 class="card-title">شيش برك</h3>
-              <p class="card-text">نغمة خاصة ونكهة مميزة.</p>
-              <div class="card-row">
-                <span class="price">سيتم تحديد السعر</span>
-                <button class="mini-btn">اطلب الآن</button>
-              </div>
-            </div>
-          </article>
-
-          <article class="card">
-            <div class="card-image">
-              <img src="https://raw.githubusercontent.com/m12h00/capta/main/WhatsApp%20Image%202026-11-07%20at%208.57.48%20PM.jpeg" alt="فطيرة التفاح" />
-            </div>
-            <div class="card-body">
-              <h3 class="card-title">فطيرة التفاح</h3>
-              <p class="card-text">حلويات خفيفة ومناسبة أثناء الاستقبال.</p>
-              <div class="card-row">
-                <span class="price">سيتم تحديد السعر</span>
-                <button class="mini-btn">اطلب الآن</button>
+          <article class="flavor">
+            <img src="https://raw.githubusercontent.com/m12h00/capta/main/WhatsApp%20Image%202026-11-07%20at%208.57.49%20PM.jpeg" alt="برك جبنة">
+            <div class="flavor-body">
+              <h3>برك جبنة</h3>
+              <p>حشوة كريمية ونكهة مميزة.</p>
+              <div class="flavor-row">
+                <span class="flavor-price">سيتم تحديد السعر</span>
+                <a href="#quick-order" class="btn">اطلب</a>
               </div>
             </div>
           </article>
@@ -583,141 +234,145 @@
       </div>
     </section>
 
-    <section class="section">
+    <section class="section gallery" id="gallery">
       <div class="container">
-        <div class="feature-strip">
-          <div class="feature">
-            <div class="icon">✅</div>
-            <div>
-              <strong>جودة عالية</strong>
-              <span>منتجات مختارة بعناية</span>
-            </div>
-          </div>
-
-          <div class="feature">
-            <div class="icon">📦</div>
-            <div>
-              <strong>توصيل سريع</strong>
-              <span>في دمشق ومنطقة دمشق</span>
-            </div>
-          </div>
-
-          <div class="feature">
-            <div class="icon">💬</div>
-            <div>
-              <strong>طلب مباشر</strong>
-              <span>من خلال واتساب</span>
-            </div>
-          </div>
-
-          <div class="feature">
-            <div class="icon">🥘</div>
-            <div>
-              <strong>مذاق أصيل</strong>
-              <span>من أطباقنا التقليدية</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="gallery">
-      <div class="container">
-        <div class="section-head">
+        <div class="section-title">
+          <span class="tag">تجربة مرئية</span>
           <h2>معرض الصور</h2>
-          <div class="pill">منتجاتنا</div>
+          <p>صور منتجاتنا من داخل العلب</p>
         </div>
-
-        <div class="gallery">
-          <div class="gallery-item">
-            <img src="https://raw.githubusercontent.com/m12h00/capta/main/WhatsApp%20Image%202026-11-07%20at%208.57.31%20PM.jpeg" alt="معرض صورة 1" />
-          </div>
-          <div class="gallery-item">
-            <img src="https://raw.githubusercontent.com/m12h00/capta/main/WhatsApp%20Image%202026-11-07%20at%208.57.34%20PM.jpeg" alt="معرض صورة 2" />
-          </div>
-          <div class="gallery-item">
-            <img src="https://raw.githubusercontent.com/m12h00/capta/main/WhatsApp%20Image%202026-11-07%20at%208.57.36%20PM.jpeg" alt="معرض صورة 3" />
-          </div>
-          <div class="gallery-item">
-            <img src="https://raw.githubusercontent.com/m12h00/capta/main/WhatsApp%20Image%202026-11-07%20at%208.57.46%20PM%20(1).jpeg" alt="معرض صورة 4" />
-          </div>
-          <div class="gallery-item">
-            <img src="https://raw.githubusercontent.com/m12h00/capta/main/WhatsApp%20Image%202026-11-07%20at%208.57.47%20PM%20(1).jpeg" alt="معرض صورة 5" />
-          </div>
-          <div class="gallery-item">
-            <img src="https://raw.githubusercontent.com/m12h00/capta/main/WhatsApp%20Image%202026-11-07%20at%208.57.48%20PM.jpeg" alt="معرض صورة 6" />
-          </div>
+        <div class="gallery-grid">
+          <img src="https://raw.githubusercontent.com/m12h00/capta/main/WhatsApp%20Image%202026-11-07%20at%208.57.31%20PM.jpeg" alt="معرض1">
+          <img src="https://raw.githubusercontent.com/m12h00/capta/main/WhatsApp%20Image%202026-11-07%20at%208.57.34%20PM.jpeg" alt="معرض2">
+          <img src="https://raw.githubusercontent.com/m12h00/capta/main/WhatsApp%20Image%202026-11-07%20at%208.57.46%20PM.jpeg" alt="معرض3">
+          <img src="https://raw.githubusercontent.com/m12h00/capta/main/WhatsApp%20Image%202026-11-07%20at%208.57.47%20PM.jpeg" alt="معرض4">
         </div>
       </div>
     </section>
 
-    <section class="section" id="offers">
+    <section class="section" id="product">
       <div class="container">
-        <div class="section-head">
-          <h2>العروض</h2>
-          <div class="pill">قريبًا</div>
+        <div class="section-title">
+          <span class="tag">تفاصيل المنتج</span>
+          <h2>كبايتي بجودة عالية</h2>
         </div>
 
-        <div class="box">
-          <span class="pending">جاري التطوير</span>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="delivery">
-      <div class="container">
-        <div class="section-head">
-          <h2>التوصيل</h2>
-          <div class="pill">خدمة متاحة</div>
-        </div>
-
-        <div class="box">
-          <span class="pending">جاري التطوير</span>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="reviews">
-      <div class="container">
-        <div class="section-head">
-          <h2>تقييمات العملاء</h2>
-          <div class="pill">نجوم 5</div>
-        </div>
-
-        <div class="reviews">
-          <div class="review">
-            <div class="stars">★★★★★</div>
-            <p>“مذاق رائع جدًا، واحتفظت بالطعم التقليدي.”</p>
-            <h4>سارة</h4>
-          </div>
-
-          <div class="review">
-            <div class="stars">★★★★★</div>
-            <p>“جودة ممتازة والتغليف جيد جدًا.”</p>
-            <h4>حسن</h4>
-          </div>
-
-          <div class="review">
-            <div class="stars">★★★★★</div>
-            <p>“خدمة ممتازة والمذاق أصيل ومميز.”</p>
-            <h4>رنا</h4>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
-        <div class="contact">
+        <div class="product">
           <div>
-            <h3>اطلب منتجك الآن</h3>
-            <p>مراسلة مباشرة عبر واتساب أو اتصال مباشر</p>
+            <h3>علبة كبة مقلية</h3>
+            <p>مقدم في علب مناسبة للعائلة، مع قوام مميز وطعم تقليدي. مناسب للضيافة والوجبات السريعة.</p>
+          </div>
+          <div class="product-box">
+            <strong>500غ</strong>
+            <span>12 قطعة</span>
+            <span>مناسب للطلب اليومي</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section offers" id="offers">
+      <div class="container">
+        <div class="section-title">
+          <span class="tag">قريبًا</span>
+          <h2>العروض</h2>
+          <p>سنعرض لكم أفضل العروض في أقرب وقت</p>
+        </div>
+        <div class="offer-card">
+          <h3>العروض قيد التطوير</h3>
+          <p>سنقوم بإظهار العروض الخاصة قريبا على الموقع.</p>
+          <span class="pending">جاري التطوير</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section quick-order" id="quick-order">
+      <div class="container">
+        <div class="section-title">
+          <span class="tag">بخطوتين وسهلة</span>
+          <h2>اطلب طلبك الآن</h2>
+          <p>اختر النكهة والكمية وسنرسل لك الطلب عبر واتساب</p>
+        </div>
+
+        <div class="order-card">
+          <form id="orderForm">
+            <div class="order-fields">
+              <div class="field">
+                <label for="flavorSelect">نوع المنتج</label>
+                <select id="flavorSelect">
+                  <option value="كبة مقلية">كبة مقلية</option>
+                  <option value="كبة مشوية">كبة مشوية</option>
+                  <option value="كبة نباتية">كبة نباتية</option>
+                  <option value="برك جبنة">برك جبنة</option>
+                  <option value="شيش برك">شيش برك</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label for="quantity">الكمية</label>
+                <input id="quantity" type="number" min="1" value="1">
+              </div>
+
+              <div class="field">
+                <label for="currencySelect">العملة</label>
+                <select id="currencySelect">
+                  <option value="SYP">الليرة السورية</option>
+                  <option value="AED">الدرهم الإماراتي</option>
+                  <option value="SAR">الريال السعودي</option>
+                  <option value="EGP">الجنيه المصري</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label for="address">العنوان</label>
+                <input id="address" type="text" placeholder="المدينة / الحي">
+              </div>
+            </div>
+
+            <div class="order-total" id="orderTotal">إجمالي الطلب: 0.00 ل.س</div>
+
+            <div class="order-actions">
+              <button class="btn" type="submit">إرسال الطلب عبر واتساب</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="section rating" id="rating">
+      <div class="container">
+        <div class="section-title">
+          <span class="tag">رأيك يهمنا</span>
+          <h2>قيّم التجربة</h2>
+          <p>ساعدنا في تحسين الخدمة</p>
+        </div>
+
+        <div class="rating-box">
+          <div class="stars" aria-label="تقييم النجوم">
+            <span class="star" data-value="1">★</span>
+            <span class="star" data-value="2">★</span>
+            <span class="star" data-value="3">★</span>
+            <span class="star" data-value="4">★</span>
+            <span class="star" data-value="5">★</span>
           </div>
 
-          <div class="cta">
-            <a href="https://wa.me/963990424380" target="_blank" class="btn btn-light">واتساب</a>
-            <a href="tel:+963990424380" class="btn btn-light">اتصال</a>
-          </div>
+          <form id="ratingForm">
+            <textarea id="ratingText" placeholder="اكتب تقييمك..."></textarea>
+            <button class="btn" type="submit">إرسال التقييم</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="container contact-row">
+        <div>
+          <h2>يسعدنا طلبك</h2>
+          <p>للطلب والاستفسار تواصل معنا عبر واتساب أو اتصال مباشر</p>
+        </div>
+        <div class="contact-actions">
+          <a href="https://wa.me/963990424380?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%20%D9%84%D8%B7%D9%84%D8%A8%20%D8%A7%D9%84%D9%85%D8%AF%D9%81%D9%84%D8%8A%20%D9%84%D9%83%D8%A8%D8%A7%D9%8A%D8%AA%D9%8A" class="btn btn-light" target="_blank">واتساب</a>
+          <a href="tel:+963990424380" class="btn btn-light">اتصال</a>
         </div>
       </div>
     </section>
@@ -730,5 +385,67 @@
     </div>
   </footer>
 
+  <a class="whatsapp-float" href="https://wa.me/963990424380?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%20%D8%A7%D9%84%D8%B7%D9%84%D8%A8%20%D8%8F%D9%84%D9%83%D8%A8%D8%A7%D9%8A%D8%AA%D9%8A" target="_blank" aria-label="طلب عبر ��اتساب"><span class="whatsapp-icon">💬</span> واتساب</a>
+
+  <script>
+    const stars = [...document.querySelectorAll('.star')];
+    let selectedRating = 0;
+
+    stars.forEach(star => {
+      star.addEventListener('click', () => {
+        selectedRating = Number(star.dataset.value);
+        stars.forEach(item => {
+          item.classList.toggle('active', Number(item.dataset.value) <= selectedRating);
+        });
+      });
+    });
+
+    document.getElementById('ratingForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (!selectedRating) {
+        alert('اختر عدد النجوم أولًا');
+        return;
+      }
+      const text = document.getElementById('ratingText').value.trim();
+      const msg = `تقييم: ${selectedRating}★\n${text ? text : 'بدون تعليق'}`;
+      window.open(`https://wa.me/963990424380?text=${encodeURIComponent(msg)}`,'_blank');
+    });
+
+    const quantityInput = document.getElementById('quantity');
+    const currencySelect = document.getElementById('currencySelect');
+    const orderTotal = document.getElementById('orderTotal');
+
+    const exchangeRates = {
+      SYP: 1,
+      AED: 1.15,
+      SAR: 1.12,
+      EGP: 1.8
+    };
+
+    function updateTotal() {
+      const qty = Math.max(1, Number(quantityInput.value) || 1);
+      quantityInput.value = qty;
+      const currency = currencySelect.value;
+      const base = 500 * qty;
+      const total = base * exchangeRates[currency];
+      const label = currency === 'SYP' ? 'ل.س' : currency;
+      orderTotal.textContent = `إجمالي الطلب: ${total.toFixed(2)} ${label}`;
+    }
+
+    quantityInput.addEventListener('input', updateTotal);
+    currencySelect.addEventListener('change', updateTotal);
+    updateTotal();
+
+    document.getElementById('orderForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const flavor = document.getElementById('flavorSelect').value;
+      const qty = Math.max(1, Number(quantityInput.value) || 1);
+      const currency = currencySelect.value;
+      const address = document.getElementById('address').value.trim() || 'غير محدد';
+      const total = orderTotal.textContent.replace('إجمالي الطلب: ', '');
+      const msg = `مرحبًا، أريد طلبًا جديدًا:%0A- المنتج: ${flavor}%0A- الكمية: ${qty}%0A- العملة: ${currency}%0A- العنوان: ${address}%0A- الإجمالي: ${total}`;
+      window.open(`https://wa.me/963990424380?text=${msg}`,'_blank');
+    });
+  </script>
 </body>
 </html>
